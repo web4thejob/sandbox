@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-7"?>
+<!--
+  ~ Copyright (c) 2013 Veniamin Isaias
+  ~
+  ~ This file is part of web4thejob-sandbox.
+  ~
+  ~ Web4thejob-sandbox is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Web4thejob-sandbox is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:aop="http://www.springframework.org/schema/aop"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <beans:bean id="userDetailsService"
+                class="org.web4thejob.security.UserDetailsServiceImpl"/>
+
+    <beans:bean id="webAccessDecisionManager"
+                class="org.springframework.security.access.vote.AffirmativeBased">
+        <beans:property name="decisionVoters">
+            <beans:list>
+                <beans:bean
+                        class="org.springframework.security.web.access.expression.WebExpressionVoter">
+                    <beans:property name="expressionHandler">
+                        <beans:bean class="org.web4thejob.security.CustomWebSecurityExpressionHandler"/>
+                    </beans:property>
+                </beans:bean>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="passwordEncoder"
+                class="org.springframework.security.authentication.encoding.PlaintextPasswordEncoder">
+    </beans:bean>
+
+    <beans:bean id="userSaltSource"
+                class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+        <beans:property name="userPropertyToUse" value="username"/>
+    </beans:bean>
+
+    <beans:bean id="credentialsExpiredErrorHandler"
+                class="org.web4thejob.security.CredentialsExpiredErrorHandler" scope="request">
+        <aop:scoped-proxy/>
+        <beans:property name="defaultFailureUrl" value="/login.html?failed=1"/>
+        <beans:property name="passwordChangeUrl" value="/sec/pchange.zul"/>
+    </beans:bean>
+
+    <beans:bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <beans:property name="propertyEditorRegistrars">
+            <beans:list>
+                <beans:bean class="org.web4thejob.security.CustomEditorRegistrar"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <!--Delegating authentication point for providing secured/unsecured connections depending on request ip -->
+    <beans:bean id="authenticationEntryPoint"
+                class="org.springframework.security.web.authentication.DelegatingAuthenticationEntryPoint">
+        <beans:constructor-arg>
+            <beans:map>
+                <beans:entry
+                        key="firstUse"
+                        value-ref="firstUseEP"/>
+            </beans:map>
+        </beans:constructor-arg>
+        <beans:property name="defaultEntryPoint" ref="defaultEP"/>
+    </beans:bean>
+
+    <beans:bean id="defaultEP"
+                class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:constructor-arg>
+            <beans:value>/login.html</beans:value>
+        </beans:constructor-arg>
+    </beans:bean>
+
+    <beans:bean id="firstUseEP"
+                class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:constructor-arg>
+            <beans:value>/sec/fuwizard.zul</beans:value>
+        </beans:constructor-arg>
+    </beans:bean>
+
+    <!--Delegating authentication point for providing secured/unsecured connections depending on request ip -->
+
+
+    <authentication-manager alias="authenticationManager">
+        <!--<authentication-provider ref="adAuthenticationProvider"/>-->
+        <authentication-provider user-service-ref="userDetailsService">
+            <password-encoder ref="passwordEncoder">
+                <salt-source ref="userSaltSource"/>
+            </password-encoder>
+        </authentication-provider>
+    </authentication-manager>
+
+
+    <http auto-config="true" use-expressions="true" entry-point-ref="authenticationEntryPoint"
+          access-decision-manager-ref="webAccessDecisionManager">
+        <intercept-url pattern="/sec/fuwizard.zul" access="permitAll and firstUse" requires-channel="http"/>
+        <intercept-url pattern="/login.html" access="permitAll and !firstUse" requires-channel="http"/>
+
+        <intercept-url pattern="/pub/**" access="permitAll"/>
+        <intercept-url pattern="/zkau/**" access="permitAll"/>
+        <intercept-url pattern="/js/**" access="permitAll"/>
+        <intercept-url pattern="/img/**" access="permitAll"/>
+        <intercept-url pattern="/license/**" access="permitAll"/>
+        <intercept-url pattern="/favicon.ico" access="permitAll"/>
+
+        <intercept-url pattern="/**" access="authenticated and !firstUse"/>
+        <form-login always-use-default-target="true"
+                    authentication-failure-handler-ref="credentialsExpiredErrorHandler"/>
+
+        <!--cookie style remember me service valid for 1 year (60*60*24*365)-->
+        <remember-me key="change_me_to_something_unique_to_your_application" token-validity-seconds="31536000"/>
+    </http>
+
+</beans:beans>
+

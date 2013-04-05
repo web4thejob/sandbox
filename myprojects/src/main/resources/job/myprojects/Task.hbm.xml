@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2013 Veniamin Isaias
+  ~
+  ~ This file is part of web4thejob-sandbox.
+  ~
+  ~ Web4thejob-sandbox is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Web4thejob-sandbox is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="job.myprojects.Task" table="Task" schema="mypm">
+        <meta attribute="friendlyName">Task</meta>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">Id</meta>
+            <meta attribute="orderno">1</meta>
+            <column name="Id"/>
+            <generator class="native"/>
+        </id>
+        <many-to-one name="project" class="job.myprojects.Project" fetch="select">
+            <meta attribute="friendlyName">Project</meta>
+            <meta attribute="orderno">2</meta>
+            <column name="Project" not-null="true"/>
+        </many-to-one>
+        <property name="title" type="string" index="true">
+            <meta attribute="friendlyName">Title</meta>
+            <meta attribute="orderno">3</meta>
+            <column name="Title" not-null="true"/>
+        </property>
+        <property name="borderColor" type="string" index="true">
+            <meta attribute="friendlyName">Border Color</meta>
+            <meta attribute="orderno">4</meta>
+            <column name="BorderColor" length="20" not-null="true"/>
+        </property>
+        <property name="color" type="string" index="true">
+            <meta attribute="friendlyName">Content Color</meta>
+            <meta attribute="orderno">5</meta>
+            <column name="Color" length="20" not-null="true"/>
+        </property>
+        <property name="startTime" type="timestamp" index="true">
+            <meta attribute="friendlyName">Start Time</meta>
+            <meta attribute="orderno">6</meta>
+            <column name="StartTime" length="23" not-null="true"/>
+        </property>
+        <property name="endTime" type="timestamp" index="true">
+            <meta attribute="friendlyName">End Time</meta>
+            <meta attribute="orderno">7</meta>
+            <column name="EndTime" length="23" not-null="true"/>
+        </property>
+        <many-to-one name="location" class="job.myprojects.Venue" fetch="select">
+            <meta attribute="friendlyName">Location</meta>
+            <meta attribute="orderno">8</meta>
+            <column name="Location"/>
+        </many-to-one>
+        <property name="rate" type="big_decimal" index="true">
+            <meta attribute="friendlyName">Rate</meta>
+            <meta attribute="orderno">9</meta>
+            <column name="Rate" not-null="true"/>
+        </property>
+        <property name="details" type="text">
+            <meta attribute="friendlyName">Details</meta>
+            <meta attribute="orderno">10</meta>
+            <column name="Details"/>
+        </property>
+        <property name="locked" type="boolean">
+            <meta attribute="friendlyName">Locked</meta>
+            <meta attribute="orderno">11</meta>
+            <column name="Locked" not-null="true"/>
+        </property>
+        <property name="cancelled" type="boolean">
+            <meta attribute="friendlyName">Cancelled</meta>
+            <meta attribute="orderno">12</meta>
+            <column name="Cancelled" not-null="true"/>
+        </property>
+        <property name="notBillable" type="big_decimal" index="true">
+            <meta attribute="friendlyName">Not Billable hours</meta>
+            <meta attribute="orderno">13</meta>
+            <column name="NotBillable" not-null="true" default="0"/>
+        </property>
+        <property name="duration" type="big_decimal">
+            <meta attribute="friendlyName">Duration (hours)</meta>
+            <meta attribute="orderno">14</meta>
+            <formula>DATEDIFF('minute',StartTime,EndTime) / 60.0000</formula>
+        </property>
+    </class>
+</hibernate-mapping>

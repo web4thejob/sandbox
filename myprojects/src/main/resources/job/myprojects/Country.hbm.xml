@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2013 Veniamin Isaias
+  ~
+  ~ This file is part of web4thejob-sandbox.
+  ~
+  ~ Web4thejob-sandbox is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Web4thejob-sandbox is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="job.myprojects.Country" table="Country" schema="mypm">
+        <meta attribute="friendlyName">Country</meta>
+
+        <cache usage="nonstrict-read-write"/>
+
+        <id name="id" type="string">
+            <meta attribute="friendlyName">ID</meta>
+            <meta attribute="orderno">1</meta>
+            <column name="Id" not-null="true" length="2"/>
+        </id>
+        <property name="name" type="string">
+            <meta attribute="friendlyName">Name</meta>
+            <meta attribute="orderno">2</meta>
+            <column name="Name" not-null="true" length="120"/>
+        </property>
+
+        <set name="venues" table="Venue" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Country" not-null="false"/>
+            </key>
+            <one-to-many class="job.myprojects.Venue"/>
+        </set>
+        <set name="customers" table="Customer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Country" not-null="false"/>
+            </key>
+            <one-to-many class="job.myprojects.Customer"/>
+        </set>
+
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2013 Veniamin Isaias
+  ~
+  ~ This file is part of web4thejob-sandbox.
+  ~
+  ~ Web4thejob-sandbox is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Web4thejob-sandbox is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="job.myprojects.Venue" table="Venue" schema="mypm">
+        <meta attribute="friendlyName">Venue</meta>
+
+        <cache usage="nonstrict-read-write"/>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">Id</meta>
+            <meta attribute="orderno">1</meta>
+            <column name="Id"/>
+            <generator class="native"/>
+        </id>
+        <property name="code" type="string">
+            <meta attribute="friendlyName">Code</meta>
+            <meta attribute="orderno">2</meta>
+            <column name="Code" not-null="true" unique-key="UQ_Venue"/>
+        </property>
+        <property name="address" type="string">
+            <meta attribute="friendlyName">Address</meta>
+            <meta attribute="orderno">3</meta>
+            <column name="Address"/>
+        </property>
+        <property name="postalCode" type="string">
+            <meta attribute="friendlyName">Postal Code</meta>
+            <meta attribute="orderno">4</meta>
+            <column name="PostalCode"/>
+        </property>
+        <property name="city" type="string">
+            <meta attribute="friendlyName">City</meta>
+            <meta attribute="orderno">5</meta>
+            <column name="City"/>
+        </property>
+        <many-to-one name="country" class="job.myprojects.Country" fetch="select">
+            <meta attribute="friendlyName">Country</meta>
+            <meta attribute="orderno">6</meta>
+            <column name="Country"/>
+        </many-to-one>
+        <property name="floor" type="integer">
+            <meta attribute="friendlyName">Floor</meta>
+            <meta attribute="orderno">7</meta>
+            <column name="Floor"/>
+        </property>
+        <property name="room" type="string">
+            <meta attribute="friendlyName">Room</meta>
+            <meta attribute="orderno">8</meta>
+            <column name="Room"/>
+        </property>
+        <property name="notes" type="text">
+            <meta attribute="friendlyName">Notes</meta>
+            <meta attribute="orderno">9</meta>
+            <column name="Notes"/>
+        </property>
+
+        <set name="tasks" table="Task" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Venue" not-null="false"/>
+            </key>
+            <one-to-many class="job.myprojects.Task"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

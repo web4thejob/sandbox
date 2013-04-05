@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Copyright (c) 2013 Veniamin Isaias
+  ~
+  ~ This file is part of web4thejob-sandbox.
+  ~
+  ~ Web4thejob-sandbox is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Web4thejob-sandbox is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.web4thejob.sandbox.orm.Document" schema="sandbox" table="`DOCUMENT`">
+        <meta attribute="friendlyName">Document</meta>
+
+        <id name="id" type="long">
+            <meta attribute="friendlyName">ID</meta>
+            <meta attribute="index">1</meta>
+            <column name="`ID`"/>
+            <generator class="native"/>
+        </id>
+
+        <natural-id mutable="true">
+            <property name="code" type="string">
+                <meta attribute="friendlyName">Code</meta>
+                <meta attribute="index">2</meta>
+                <column name="`CODE`" length="40" not-null="true"/>
+            </property>
+        </natural-id>
+
+        <property name="body" type="materialized_clob">
+            <meta attribute="friendlyName">Body</meta>
+            <meta attribute="index">3</meta>
+            <column name="`BODY`" length="5000" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
