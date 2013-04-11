@@ -68,9 +68,14 @@
             <meta attribute="orderno">8</meta>
             <column name="Room"/>
         </property>
+        <property name="map" type="text">
+            <meta attribute="friendlyName">Map</meta>
+            <meta attribute="orderno">10</meta>
+            <column name="Map"/>
+        </property>
         <property name="notes" type="text">
             <meta attribute="friendlyName">Notes</meta>
-            <meta attribute="orderno">9</meta>
+            <meta attribute="orderno">11</meta>
             <column name="Notes"/>
         </property>
 
