@@ -30,13 +30,10 @@
         <property name="fallbackToSystemLocale" value="false"/>
         <property name="basenames">
             <array>
-                <!--<value>classpath:org/web4thejob/l10n/ValidationMessages</value>-->
-                <!--<value>classpath:org/web4thejob/l10n/WebMessages</value>-->
-                <!--<value>classpath:org/web4thejob/l10n/Commands</value>-->
                 <value>WEB-INF/ValidationMessages</value>
                 <value>WEB-INF/WebMessages</value>
                 <value>WEB-INF/Commands</value>
-
+                <value>WEB-INF/Calendar</value>
             </array>
         </property>
     </bean>
