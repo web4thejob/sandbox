@@ -70,6 +70,7 @@ public class Task extends AbstractHibernateEntity {
     @NotNull
     private BigDecimal notBillable = BigDecimal.ZERO;
     private BigDecimal duration = BigDecimal.ZERO;
+    private TaskAttachment attachment;
 
     public long getId() {
         return this.id;
@@ -272,5 +273,14 @@ public class Task extends AbstractHibernateEntity {
         }
         return true;
     }
+
+    public TaskAttachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(TaskAttachment attachment) {
+        this.attachment = attachment;
+    }
+
 
 }
