@@ -21,7 +21,6 @@ package job.myprojects;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
-import org.web4thejob.orm.annotation.HtmlHolder;
 import org.web4thejob.orm.annotation.UrlHolder;
 
 import java.io.Serializable;
@@ -43,9 +42,8 @@ public class Venue extends AbstractHibernateEntity {
     private int floor;
     private String room;
     @UrlHolder
-    private String map;
-    @HtmlHolder
-    private String notes;
+    private String location;
+    private VenueNotes notes;
     private Set<Task> tasks = new HashSet<Task>(0);
 
     public long getId() {
@@ -112,20 +110,12 @@ public class Venue extends AbstractHibernateEntity {
         this.room = room;
     }
 
-    public String getMap() {
-        return map;
+    public String getLocation() {
+        return location;
     }
 
-    public void setMap(String map) {
-        this.map = map;
-    }
-
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     @Override
@@ -149,5 +139,13 @@ public class Venue extends AbstractHibernateEntity {
 
     public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public VenueNotes getNotes() {
+        return notes;
+    }
+
+    public void setNotes(VenueNotes notes) {
+        this.notes = notes;
     }
 }

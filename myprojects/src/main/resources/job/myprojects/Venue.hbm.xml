@@ -68,16 +68,17 @@
             <meta attribute="orderno">8</meta>
             <column name="Room"/>
         </property>
-        <property name="map" type="text">
-            <meta attribute="friendlyName">Map</meta>
+        <property name="location" type="text">
+            <meta attribute="friendlyName">Location</meta>
             <meta attribute="orderno">10</meta>
-            <column name="Map"/>
+            <column name="Location"/>
         </property>
-        <property name="notes" type="text">
+
+        <one-to-one name="notes" class="job.myprojects.VenueNotes" fetch="select">
             <meta attribute="friendlyName">Notes</meta>
             <meta attribute="orderno">11</meta>
-            <column name="Notes"/>
-        </property>
+        </one-to-one>
+
 
         <set name="tasks" table="Task" inverse="true" lazy="true" fetch="select">
             <key>
