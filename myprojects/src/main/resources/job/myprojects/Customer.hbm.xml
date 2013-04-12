@@ -73,11 +73,11 @@
             <meta attribute="orderno">9</meta>
             <column name="Telephone"/>
         </property>
-        <property name="notes" type="text">
+
+        <one-to-one name="notes" class="job.myprojects.CustomerNotes" fetch="select">
             <meta attribute="friendlyName">Notes</meta>
-            <meta attribute="orderno">10</meta>
-            <column name="Notes"/>
-        </property>
+            <meta attribute="orderno">11</meta>
+        </one-to-one>
 
         <set name="projects" table="Project" inverse="true" lazy="true" fetch="select">
             <key>

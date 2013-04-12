@@ -23,7 +23,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.web4thejob.orm.AbstractHibernateEntity;
 import org.web4thejob.orm.annotation.EmailHolder;
-import org.web4thejob.orm.annotation.HtmlHolder;
 import org.web4thejob.orm.annotation.StatusHolder;
 
 import java.io.Serializable;
@@ -48,8 +47,7 @@ public class Customer extends AbstractHibernateEntity {
     @Email
     private String email;
     private String telephone;
-    @HtmlHolder
-    private String notes;
+    private CustomerNotes notes;
 
     private Set<Project> projects = new HashSet<Project>(0);
 
@@ -130,14 +128,6 @@ public class Customer extends AbstractHibernateEntity {
         this.telephone = telephone;
     }
 
-    public String getNotes() {
-        return notes;
-    }
-
-    public void setNotes(String notes) {
-        this.notes = notes;
-    }
-
     public Set<Project> getProjects() {
         return projects;
     }
@@ -166,4 +156,13 @@ public class Customer extends AbstractHibernateEntity {
     public String toString() {
         return fullName;
     }
+
+    public CustomerNotes getNotes() {
+        return notes;
+    }
+
+    public void setNotes(CustomerNotes notes) {
+        this.notes = notes;
+    }
+
 }
