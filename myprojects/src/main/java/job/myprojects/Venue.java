@@ -44,6 +44,7 @@ public class Venue extends AbstractHibernateEntity {
     @UrlHolder
     private String location;
     private VenueNotes notes;
+    private VenueImage image;
     private Set<Task> tasks = new HashSet<Task>(0);
 
     public long getId() {
@@ -148,4 +149,13 @@ public class Venue extends AbstractHibernateEntity {
     public void setNotes(VenueNotes notes) {
         this.notes = notes;
     }
+
+    public VenueImage getImage() {
+        return image;
+    }
+
+    public void setImage(VenueImage image) {
+        this.image = image;
+    }
+
 }

@@ -71,7 +71,7 @@
         <property name="location" type="text">
             <meta attribute="friendlyName">Location</meta>
             <meta attribute="orderno">10</meta>
-            <column name="Location"/>
+            <column name="Location" length="16777216"/>
         </property>
 
         <one-to-one name="notes" class="job.myprojects.VenueNotes" fetch="select">
@@ -79,6 +79,10 @@
             <meta attribute="orderno">11</meta>
         </one-to-one>
 
+        <one-to-one name="image" class="job.myprojects.VenueImage" fetch="select">
+            <meta attribute="friendlyName">Image</meta>
+            <meta attribute="orderno">12</meta>
+        </one-to-one>
 
         <set name="tasks" table="Task" inverse="true" lazy="true" fetch="select">
             <key>
