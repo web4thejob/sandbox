@@ -10,37 +10,32 @@
         <!-- fixes hidden content of notification messages -->
         .z-notification-ref .z-notification-cl, .z-notification-ref .z-notification-cnt { display: table-cell; }
 
-        <!-- example of odd listbox row css
-        .w4tj-listbox-oddRow { background-color: rgb(235, 241, 228);}
-        -->
-
         <!-- example of a simple style customization using css selectors -->
         div[class~="w4tj-desktop-menu"] > div[class="z-tree-body"] {background-color: rgba(220, 240, 251, 0.10);}
 
-        div[class~="w4tj-desktop-background"] {background-position: bottom right; background-size: 100%;
-                background-repeat: no-repeat; background-attachment: scroll; background-image: url('img/desktop_background.gif');
-                background-origin:content-box;}
+        div[class~="w4tj-desktop-background"] {
+          background: url('img/desktop_background.gif') no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+        }
+
 
         div[class~="notes-tab"] {background-color: #FFF8C6;}
 
-        div[class~="navigationChainPanel"] {margin: 2px;padding:0px 0px 0px 5px; border: 2px solid rgba(240, 240, 240, 1); background-color: rgba(182, 214, 231, 0.7);}
+        div[class~="help-panel"] {background-color:rgba(253, 245, 255, 0.51);color:rgb(82, 82, 82);}
+        div[class~="help-panel"] hr {margin-left:5px;margin-right:5px;border-style:dotted;border-color:rgb(82, 82, 82);}
+        div[class~="help-panel"] a {color:#78b428;}
+        div[class~="help-panel"] p {padding-left:5px;}
+        div[class~="help-panel"] div {padding-left:5px;}
+        div[class~="help-panel"] h1 {padding-left:5px;}
+        div[class~="help-panel"] h2 {padding-left:5px;}
+        div[class~="help-panel"] h3 {padding-left:5px;}
 
-<!--
-        /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-        div[class~="navigationChainPanel"] { margin: 2px 0px 2px 0px;padding: 0px 0px 0px 5px;
-      background: rgb(226,226,226); /* Old browsers */
-      /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UyZTJlMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIyJSIgc3RvcC1jb2xvcj0iI2RiZGJkYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZWZlZmUiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-      background: -moz-linear-gradient(left,  rgba(226,226,226,1) 0%, rgba(219,219,219,1) 22%, rgba(254,254,254,1) 100%); /* FF3.6+ */
-      background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(226,226,226,1)), color-stop(22%,rgba(219,219,219,1)), color-stop(100%,rgba(254,254,254,1))); /* Chrome,Safari4+ */
-      background: -webkit-linear-gradient(left,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 22%,rgba(254,254,254,1) 100%); /* Chrome10+,Safari5.1+ */
-      background: -o-linear-gradient(left,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 22%,rgba(254,254,254,1) 100%); /* Opera 11.10+ */
-      background: -ms-linear-gradient(left,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 22%,rgba(254,254,254,1) 100%); /* IE10+ */
-      background: linear-gradient(to right,  rgba(226,226,226,1) 0%,rgba(219,219,219,1) 22%,rgba(254,254,254,1) 100%); /* W3C */
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=1 ); /* IE6-8 */
+        div[class~="navigationChainPanel"] {margin: 2px; margin-right:0px;padding: 0px 0px 0px 5px; background-color: rgba(36, 113, 138, 0.14);}
+        div[class~="navigationChainPanel"] a {color:#78b428;}
 
-        }
--->
     </style>
 
         <window border="none" width="100%" height="100%">
