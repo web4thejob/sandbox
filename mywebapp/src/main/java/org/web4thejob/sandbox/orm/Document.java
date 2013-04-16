@@ -30,6 +30,9 @@ import java.io.Serializable;
  * @since 1.0.0
  */
 public class Document extends AbstractHibernateEntity {
+    public static final String FLD_CODE = "code";
+    public static final String FLD_BODY = "body";
+
     private long id;
     @NotBlank
     private String code;
