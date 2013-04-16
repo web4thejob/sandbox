@@ -40,6 +40,7 @@ import org.web4thejob.orm.query.Query;
 import org.web4thejob.setting.CalendarSettingEnum;
 import org.web4thejob.setting.Setting;
 import org.web4thejob.setting.SettingEnum;
+import org.web4thejob.util.CoreUtil;
 import org.web4thejob.util.L10nMessages;
 import org.web4thejob.web.dialog.DefaultEntityPersisterDialog;
 import org.web4thejob.web.dialog.EntityPersisterDialog;
@@ -347,11 +348,12 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
                     addnew.removeArgs();
                 }
             } else if (CalendarsEvent.ON_EVENT_EDIT.equals(event.getName())) {
-                if (hasCommand(CommandEnum.UPDATE)) {
-                    CalendarsEvent cevt = (CalendarsEvent) event;
-                    Command update = getCommand(CommandEnum.UPDATE);
-                    setTargetEntity(((CalendarEventWrapper) cevt.getCalendarEvent()).getEntity());
-                    processValidCommand(update);
+                CalendarsEvent cevt = (CalendarsEvent) event;
+                Panel entityView = CoreUtil.getEntityViewPanel(((CalendarEventWrapper) cevt
+                        .getCalendarEvent()).getEntity());
+                if (entityView != null) {
+                    dispatchMessage(ContextUtil.getMessage(MessageEnum.ADOPT_ME,
+                            entityView));
                 }
             } else if (CalendarsEvent.ON_EVENT_UPDATE.equals(event.getName())) {
                 if (hasCommand(CommandEnum.UPDATE)) {
@@ -601,7 +603,7 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
     @SuppressWarnings({"unchecked", "rawtypes"})
     private void refresh() {
         if (calendar.getPage() != null && (calendar.getBeginDate().before(minBeginDate) || calendar.getEndDate().after
-                (maxEndDate))) {
+                (maxEndDate)) || hasMasterEntity()) {
             if (calendar.getBeginDate().before(minBeginDate)) {
                 minBeginDate = calendar.getBeginDate();
             }
