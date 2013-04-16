@@ -19,9 +19,19 @@
 
 package org.web4thejob.module;
 
+import job.myprojects.Country;
+import job.myprojects.TaskAttachment;
+import job.myprojects.VenueNotes;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.stereotype.Component;
+import org.web4thejob.context.ContextUtil;
+import org.web4thejob.orm.Entity;
+import org.web4thejob.orm.EntityMetadata;
+import org.web4thejob.orm.ORMUtil;
+import org.web4thejob.web.panel.EntityViewPanel;
+import org.web4thejob.web.panel.ListViewPanel;
+import org.web4thejob.web.panel.MutableEntityViewPanel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,6 +56,65 @@ public class MyProjectsJoblet extends AbstractJoblet {
     @Override
     public String[] getSchemas() {
         return new String[]{"mypm"};
+    }
+
+    @Override
+    public <E extends Exception> List<E> setup() {
+
+        sampleListAndEntityPanels();
+        sampleCountries();
+
+        return super.setup();
+    }
+
+    private void sampleListAndEntityPanels() {
+        for (EntityMetadata emd : ContextUtil.getMRS().getEntityMetadatas()) {
+            if (emd.getSchema().equals("mypm")) {
+
+                if (emd.getEntityType().equals(TaskAttachment.class) || emd.getEntityType().equals(VenueNotes.class))
+                    continue;
+
+                ListViewPanel listViewPanel = ContextUtil.getDefaultPanel(ListViewPanel.class);
+                listViewPanel.setTargetType(emd.getEntityType());
+                ORMUtil.persistPanel(listViewPanel);
+
+                EntityViewPanel entityViewPanel = ContextUtil.getDefaultPanel(MutableEntityViewPanel.class);
+                entityViewPanel.setTargetType(emd.getEntityType());
+                ORMUtil.persistPanel(entityViewPanel);
+            }
+        }
+    }
+
+    private void sampleCountries() {
+        List<Entity> countries = new ArrayList<Entity>();
+        Country country;
+
+        country = new Country();
+        country.setId("PT");
+        country.setName("Portugal");
+        countries.add(country);
+
+        country = new Country();
+        country.setId("IE");
+        country.setName("Ireland");
+        countries.add(country);
+
+        country = new Country();
+        country.setId("IT");
+        country.setName("Italy");
+        countries.add(country);
+
+        country = new Country();
+        country.setId("GR");
+        country.setName("Greece");
+        countries.add(country);
+
+        country = new Country();
+        country.setId("ES");
+        country.setName("Spain");
+        countries.add(country);
+
+        ContextUtil.getDWS().save(countries);
     }
 
     @Override
