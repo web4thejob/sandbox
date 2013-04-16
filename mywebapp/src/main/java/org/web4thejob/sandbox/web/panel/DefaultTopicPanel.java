@@ -29,7 +29,7 @@ import org.web4thejob.web.panel.DefaultHtmlViewPanel;
 
 @org.springframework.stereotype.Component
 @Scope("prototype")
-public class DefaultTopicPanel extends DefaultHtmlViewPanel {
+public class DefaultTopicPanel extends DefaultHtmlViewPanel implements TopicPanel {
 
     @Override
     protected void arrangeForMutableMode() {
