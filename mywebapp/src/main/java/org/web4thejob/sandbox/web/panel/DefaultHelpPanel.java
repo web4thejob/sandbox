@@ -71,6 +71,13 @@ public class DefaultHelpPanel extends DefaultHtmlViewPanel implements HelpPanel 
                         }
                     }
                 }
+
+                if (doc == null && activeQuery != null) {
+                    doc = ContextUtil.getDRS().findUniqueByQuery(activeQuery);
+                    if (doc != null) {
+                        bind(doc);
+                    }
+                }
             }
 
         }
