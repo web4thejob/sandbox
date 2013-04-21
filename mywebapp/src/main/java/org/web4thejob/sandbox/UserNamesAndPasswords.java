@@ -22,6 +22,8 @@ package org.web4thejob.sandbox;
 import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.Entity;
+import org.web4thejob.orm.Path;
+import org.web4thejob.orm.query.Condition;
 import org.web4thejob.orm.query.Query;
 import org.web4thejob.security.UserIdentity;
 import org.zkoss.zk.ui.util.Composer;
@@ -42,6 +44,7 @@ public class UserNamesAndPasswords implements Composer<Window>, RowRenderer<User
         vbox.setHflex("true");
         vbox.setParent(window);
 
+/*
         Div div = new Div();
         div.setStyle("background-color:rgba(210,210,210,0.5);border:1px;border-color:rgba(210,210,210," +
                 "0.5);border-style:solid;");
@@ -49,6 +52,7 @@ public class UserNamesAndPasswords implements Composer<Window>, RowRenderer<User
         Label label = new Label("Pick one of the following users to try the corresponding functionality.");
         label.setStyle("font-style:italic;font-weight:bold;font-size:15px;");
         label.setParent(div);
+*/
 
         Grid grid = new Grid();
         grid.setRowRenderer(this);
@@ -71,12 +75,14 @@ public class UserNamesAndPasswords implements Composer<Window>, RowRenderer<User
         column.setAlign("center");
 
         Query query = ContextUtil.getEntityFactory().buildQuery(UserIdentity.class);
+        query.addCriterion(new Path(UserIdentity.FLD_CODE), Condition.NE, UserIdentity.USER_ADMIN);
         query.setCached(true);
         grid.setModel(new ListModelList<Entity>(ContextUtil.getDRS().findByQuery(query)));
     }
 
     @Override
     public void render(Row row, UserIdentity data, int index) throws Exception {
+
         new Label(data.getCode()).setParent(row);
 
         PlaintextPasswordEncoder encoder = ContextUtil.getBean(PlaintextPasswordEncoder.class);
@@ -85,7 +91,8 @@ public class UserNamesAndPasswords implements Composer<Window>, RowRenderer<User
         new Label(data.getLastName()).setParent(row);
 
         Html html = new Html();
-        html.setContent("<a href=\"about.html#" + data.getCode() + "\" target=\"_parent\"><img src=\"../img/CMD_SESSION_INFO.png\"/></a>");
+        html.setContent("<a href=\"about.html#" + data.getCode() + "\" target=\"_parent\"><img src=\"." +
+                "./img/CMD_SESSION_INFO.png\"/></a>");
         html.setParent(row);
     }
 
