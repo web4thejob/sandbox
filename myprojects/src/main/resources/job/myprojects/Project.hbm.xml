@@ -75,6 +75,7 @@
         </property>
 
         <set name="tasks" table="Task" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Tasks</meta>
             <key>
                 <column name="Project" not-null="true"/>
             </key>

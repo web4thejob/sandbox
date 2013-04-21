@@ -23,6 +23,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
     <bean class="org.web4thejob.context.DefaultSessionContext" scope="session"/>
+    <bean class="org.web4thejob.sandbox.web.panel.SandboxDesktopLayoutPanel" scope="prototype"/>
 
     <bean id="messageSource"
           class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
@@ -34,6 +35,7 @@
                 <value>WEB-INF/WebMessages</value>
                 <value>WEB-INF/Commands</value>
                 <value>WEB-INF/Calendar</value>
+                <value>WEB-INF/SandboxMessages</value>
             </array>
         </property>
     </bean>

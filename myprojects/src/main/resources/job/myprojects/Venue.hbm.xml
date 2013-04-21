@@ -74,17 +74,18 @@
             <column name="Location" length="16777216"/>
         </property>
 
-        <one-to-one name="notes" class="job.myprojects.VenueNotes" fetch="select">
+        <one-to-one name="notes" class="job.myprojects.VenueNotes" fetch="select" cascade="all">
             <meta attribute="friendlyName">Notes</meta>
             <meta attribute="orderno">11</meta>
         </one-to-one>
 
-        <one-to-one name="image" class="job.myprojects.VenueImage" fetch="select">
+        <one-to-one name="image" class="job.myprojects.VenueImage" fetch="select" cascade="all">
             <meta attribute="friendlyName">Image</meta>
             <meta attribute="orderno">12</meta>
         </one-to-one>
 
         <set name="tasks" table="Task" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Tasks</meta>
             <key>
                 <column name="Venue" not-null="false"/>
             </key>

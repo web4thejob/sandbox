@@ -37,6 +37,7 @@
         </id>
 
         <one-to-one name="venue" class="job.myprojects.Venue" constrained="true">
+            <meta attribute="friendlyName">Venue</meta>
         </one-to-one>
 
         <property name="image" type="materialized_blob">

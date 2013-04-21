@@ -98,7 +98,8 @@
         </property>
 
         <one-to-one name="attachment" class="job.myprojects.TaskAttachment" fetch="select" lazy="proxy"
-                    constrained="false">
+                    constrained="false" cascade="all">
+            <meta attribute="friendlyName">Task Attachment</meta>
         </one-to-one>
 
     </class>

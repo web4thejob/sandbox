@@ -74,12 +74,13 @@
             <column name="Telephone"/>
         </property>
 
-        <one-to-one name="notes" class="job.myprojects.CustomerNotes" fetch="select">
+        <one-to-one name="notes" class="job.myprojects.CustomerNotes" fetch="select" cascade="all">
             <meta attribute="friendlyName">Notes</meta>
             <meta attribute="orderno">11</meta>
         </one-to-one>
 
         <set name="projects" table="Project" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Projects</meta>
             <key>
                 <column name="Customer" not-null="true"/>
             </key>

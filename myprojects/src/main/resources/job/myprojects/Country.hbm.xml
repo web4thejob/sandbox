@@ -38,12 +38,14 @@
         </property>
 
         <set name="venues" table="Venue" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Venues</meta>
             <key>
                 <column name="Country" not-null="false"/>
             </key>
             <one-to-many class="job.myprojects.Venue"/>
         </set>
         <set name="customers" table="Customer" inverse="true" lazy="true" fetch="select">
+            <meta attribute="friendlyName">Customers</meta>
             <key>
                 <column name="Country" not-null="false"/>
             </key>

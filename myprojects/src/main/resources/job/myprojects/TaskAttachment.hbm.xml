@@ -36,6 +36,7 @@
         </id>
 
         <one-to-one name="task" class="job.myprojects.Task" constrained="true">
+            <meta attribute="friendlyName">Task</meta>
         </one-to-one>
 
         <property name="attachment" type="materialized_blob">

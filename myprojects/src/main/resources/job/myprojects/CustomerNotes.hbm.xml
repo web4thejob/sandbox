@@ -37,6 +37,7 @@
         </id>
 
         <one-to-one name="customer" class="job.myprojects.Customer" constrained="true">
+            <meta attribute="friendlyName">Customer</meta>
         </one-to-one>
 
         <property name="notes" type="text">
