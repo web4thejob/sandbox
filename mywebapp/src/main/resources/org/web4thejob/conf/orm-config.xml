@@ -95,5 +95,6 @@
     <bean class="org.web4thejob.orm.DataWriterServiceImpl"/>
     <bean class="org.web4thejob.orm.serial.MyXStreamMarshaller"/>
     <bean class="org.web4thejob.orm.MappingInitializer"/>
+    <bean class="org.web4thejob.sandbox.orm.MyProjectsSampleDataInitializer"/>
 </beans>
 
