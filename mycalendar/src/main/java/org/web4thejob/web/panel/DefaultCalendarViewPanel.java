@@ -474,7 +474,7 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
             }
         }
 
-        refresh();
+        //refresh();
     }
 
     @Override
@@ -487,15 +487,19 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
                 calendar.setMold("default");
                 arrangeForMold();
             }
+            refresh();
         } else if (CalendarCommandEnum.CALENDAR_1DAY_VIEW.equals(command.getId())) {
             calendar.setDays(1);
             arrangeForMold();
+            refresh();
         } else if (CalendarCommandEnum.CALENDAR_5DAY_VIEW.equals(command.getId())) {
             calendar.setDays(5);
             arrangeForMold();
+            refresh();
         } else if (CalendarCommandEnum.CALENDAR_7DAY_VIEW.equals(command.getId())) {
             calendar.setDays(7);
             arrangeForMold();
+            refresh();
         } else if (CommandEnum.MOVE_LEFT.equals(command.getId())) {
             calendar.previousPage();
             refresh();
