@@ -27,6 +27,7 @@ import org.web4thejob.orm.AbstractHibernateEntity;
 import org.web4thejob.orm.Entity;
 import org.web4thejob.orm.annotation.ColorHolder;
 import org.web4thejob.orm.annotation.HtmlHolder;
+import org.web4thejob.orm.annotation.UrlHolder;
 import org.web4thejob.orm.validation.AdhocConstraintViolation;
 
 import javax.validation.ConstraintViolation;
@@ -64,6 +65,8 @@ public class Task extends AbstractHibernateEntity {
     private BigDecimal rate = BigDecimal.ZERO;
     @HtmlHolder
     private String details;
+    @UrlHolder
+    private String link;
     private boolean locked;
     private boolean cancelled;
     @DecimalMin("0.00")
@@ -282,5 +285,12 @@ public class Task extends AbstractHibernateEntity {
         this.attachment = attachment;
     }
 
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
 }

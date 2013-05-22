@@ -76,24 +76,29 @@
             <meta attribute="orderno">10</meta>
             <column name="Details"/>
         </property>
+        <property name="link" type="text">
+            <meta attribute="friendlyName">Link</meta>
+            <meta attribute="orderno">11</meta>
+            <column name="link" length="16777216"/>
+        </property>
         <property name="locked" type="boolean">
             <meta attribute="friendlyName">Locked</meta>
-            <meta attribute="orderno">11</meta>
+            <meta attribute="orderno">12</meta>
             <column name="Locked" not-null="true"/>
         </property>
         <property name="cancelled" type="boolean">
             <meta attribute="friendlyName">Cancelled</meta>
-            <meta attribute="orderno">12</meta>
+            <meta attribute="orderno">13</meta>
             <column name="Cancelled" not-null="true"/>
         </property>
         <property name="notBillable" type="big_decimal" index="true">
             <meta attribute="friendlyName">Not Billable hours</meta>
-            <meta attribute="orderno">13</meta>
+            <meta attribute="orderno">14</meta>
             <column name="NotBillable" not-null="true" default="0"/>
         </property>
         <property name="duration" type="big_decimal">
             <meta attribute="friendlyName">Duration (hours)</meta>
-            <meta attribute="orderno">14</meta>
+            <meta attribute="orderno">15</meta>
             <formula>DATEDIFF('minute',StartTime,EndTime) / 60.0000</formula>
         </property>
 
