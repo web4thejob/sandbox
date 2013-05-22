@@ -36,7 +36,7 @@
         <property name="code" type="string">
             <meta attribute="friendlyName">Code</meta>
             <meta attribute="orderno">2</meta>
-            <column name="Code" length="15" not-null="true" unique-key="UQ_Project"/>
+            <column name="Code" length="30" not-null="true" unique-key="UQ_Project"/>
         </property>
         <many-to-one name="customer" class="job.myprojects.Customer" fetch="select">
             <meta attribute="friendlyName">Customer</meta>
