@@ -52,6 +52,7 @@ import org.zkoss.calendar.api.CalendarEvent;
 import org.zkoss.calendar.api.CalendarModel;
 import org.zkoss.calendar.event.CalendarsEvent;
 import org.zkoss.calendar.impl.SimpleCalendarModel;
+import org.zkoss.calendar.impl.SimpleDateFormatter;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -59,6 +60,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.web4thejob.message.MessageEnum.ENTITY_UPDATED;
@@ -90,6 +92,7 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         calendar.setWidth("100%");
         calendar.setVflex("true");
         calendar.setBeginTime(7);
+        calendar.setDateFormatter(new MyDateFormatter());
 
         final CalendarsEventHandler calendarsEventHandler = new CalendarsEventHandler();
         //calendar.addEventListener(CalendarsEvent.ON_DAY_CLICK, calendarsEventHandler);
@@ -239,16 +242,21 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
     protected void arrangeForState(PanelState newState) {
         super.arrangeForState(newState);
         activateCommand(CalendarCommandEnum.CALENDAR_VIEW, true);
-        activateCommand(CalendarCommandEnum.CALENDAR_MONTH_VIEW, true);
         activateCommand(CommandEnum.MOVE_LEFT, true);
         activateCommand(CommandEnum.MOVE_RIGHT, true);
         activateCommand(CommandEnum.REFRESH, true);
+        activateCommand(CalendarCommandEnum.CALENDAR_MONTH_VIEW, true);
+        arrangeForMold();
     }
 
 
     @Override
     public void afterPropertiesSet() throws Exception {
         super.afterPropertiesSet();
+        calendar.setDays(getSettingValue(CalendarSettingEnum.CALENDAR_DAYS, 7));
+        calendar.setTimeslots(getSettingValue(CalendarSettingEnum.CALENDAR_TIMESLOTS, 2));
+        calendar.setFirstDayOfWeek(getSettingValue(CalendarSettingEnum.CALENDAR_FIRST_DAY_OF_WEEK, 1));
+
         arrangeForNullTargetType();
         if (hasTargetType()) {
             arrangeForTargetType();
@@ -256,6 +264,7 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         } else {
             arrangeForState(PanelState.UNDEFINED);
         }
+
     }
 
     @Override
@@ -682,6 +691,19 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
                     processEntityInsertion(message.getArg(MessageArgEnum.ARG_ITEM, Entity.class));
                     break;
             }
+        }
+    }
+
+    private class MyDateFormatter extends SimpleDateFormatter {
+        private SimpleDateFormat _df;
+        private String _dayFormat = "EEE, MMM d";
+
+        public String getCaptionByDate(Date date, Locale locale, TimeZone timezone) {
+            if (_df == null) {
+                _df = new SimpleDateFormat(_dayFormat, locale);
+            }
+            _df.setTimeZone(timezone);
+            return _df.format(date);
         }
     }
 
