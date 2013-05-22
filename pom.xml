@@ -66,6 +66,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.web4thejob.version>3.4.2</org.web4thejob.version>
+        <org.junit.version>4.10</org.junit.version>
     </properties>
 
     <build>
@@ -80,5 +81,15 @@
             <url>http://mavensync.zkoss.org/maven2</url>
         </repository>
     </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${org.junit.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
