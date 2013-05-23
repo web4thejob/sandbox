@@ -23,11 +23,13 @@ import org.web4thejob.command.CommandAware;
 import org.web4thejob.message.MessageAware;
 import org.web4thejob.setting.SettingAware;
 
+import java.util.Date;
+
 /**
  * <p>Defines the api of content panels that render a calendar view.
  *
  * @author Veniamin Isaias
- * @since 2.0.0
+ * @since 1.0.0
  */
 
 public interface CalendarViewPanel extends ContentPanel, MessageAware, SettingAware, CommandAware,
@@ -36,4 +38,8 @@ public interface CalendarViewPanel extends ContentPanel, MessageAware, SettingAw
 
     @SuppressWarnings({"rawtypes"})
     public void clear();
+
+    public Date getCurrentDate();
+
+    public void setCurrentDate(Date date);
 }

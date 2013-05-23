@@ -68,7 +68,7 @@ import static org.web4thejob.message.MessageEnum.QUERY;
 
 /**
  * @author Veniamin Isaias
- * @since 2.0.0
+ * @since 1.0.0
  */
 
 
@@ -77,9 +77,10 @@ import static org.web4thejob.message.MessageEnum.QUERY;
 @Scope("prototype")
 public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements CalendarViewPanel {
     private static final String ON_EVENT_UPDATE_ECHO = CalendarsEvent.ON_EVENT_UPDATE + "Echo";
+    private static final String ON_DAY_CLICK_ECHO = CalendarsEvent.ON_DAY_CLICK + "Echo";
+    private static final String ON_WEEK_CLICK_ECHO = CalendarsEvent.ON_WEEK_CLICK + "Echo";
     private static final String ATTRIB_BEGIN_DATE = "beginDate";
     private static final String ATTRIB_END_DATE = "endDate";
-
     private final Calendars calendar = new Calendars();
     private DialogListener dialogListener = new DialogListener();
     private Query activeQuery;
@@ -93,16 +94,18 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         calendar.setVflex("true");
         calendar.setBeginTime(7);
         calendar.setDateFormatter(new MyDateFormatter());
+        calendar.setWeekOfYear(true);
 
         final CalendarsEventHandler calendarsEventHandler = new CalendarsEventHandler();
-        //calendar.addEventListener(CalendarsEvent.ON_DAY_CLICK, calendarsEventHandler);
-        //calendar.addEventListener(CalendarsEvent.ON_WEEK_CLICK, calendarsEventHandler);
+        calendar.addEventListener(CalendarsEvent.ON_DAY_CLICK, calendarsEventHandler);
+        calendar.addEventListener(CalendarsEvent.ON_WEEK_CLICK, calendarsEventHandler);
         calendar.addEventListener(CalendarsEvent.ON_EVENT_CREATE, calendarsEventHandler);
         calendar.addEventListener(CalendarsEvent.ON_EVENT_EDIT, calendarsEventHandler);
         calendar.addEventListener(CalendarsEvent.ON_EVENT_UPDATE, calendarsEventHandler);
         calendar.addEventListener(ON_EVENT_UPDATE_ECHO, calendarsEventHandler);
+        calendar.addEventListener(ON_DAY_CLICK_ECHO, calendarsEventHandler);
+        calendar.addEventListener(ON_WEEK_CLICK_ECHO, calendarsEventHandler);
     }
-
 
     @Override
     protected void arrangeForMasterEntity() {
@@ -156,6 +159,15 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         setMasterEntity(null);
     }
 
+    @Override
+    public Date getCurrentDate() {
+        return calendar.getCurrentDate();
+    }
+
+    @Override
+    public void setCurrentDate(Date date) {
+        calendar.setCurrentDate(date);
+    }
 
     @Override
     protected boolean processEntityDeselection(Entity entity) {
@@ -249,7 +261,6 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         arrangeForMold();
     }
 
-
     @Override
     public void afterPropertiesSet() throws Exception {
         super.afterPropertiesSet();
@@ -289,7 +300,6 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
     public Entity getTargetEntity() {
         return targetEntity;
     }
-
 
     @Override
     protected <T extends Serializable> void onSettingValueChanged(SettingEnum id, T oldValue, T newValue) {
@@ -341,66 +351,6 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         registerSetting(CalendarSettingEnum.CALENDAR_EVENT_CONTENT, null);
         registerSetting(CalendarSettingEnum.CALENDAR_EVENT_CONTENT_COLOR, null);
         registerSetting(CalendarSettingEnum.CALENDAR_EVENT_LOCKED, null);
-    }
-
-    private class CalendarsEventHandler implements EventListener<Event> {
-
-        @Override
-        public void onEvent(Event event) throws Exception {
-            if (CalendarsEvent.ON_EVENT_CREATE.equals(event.getName())) {
-                if (hasCommand(CommandEnum.ADDNEW)) {
-                    CalendarsEvent cevt = (CalendarsEvent) event;
-                    Command addnew = getCommand(CommandEnum.ADDNEW);
-                    addnew.setArg(ATTRIB_BEGIN_DATE, cevt.getBeginDate());
-                    addnew.setArg(ATTRIB_END_DATE, cevt.getEndDate());
-                    processValidCommand(addnew);
-                    addnew.removeArgs();
-                }
-            } else if (CalendarsEvent.ON_EVENT_EDIT.equals(event.getName())) {
-                CalendarsEvent cevt = (CalendarsEvent) event;
-                Panel entityView = CoreUtil.getEntityViewPanel(((CalendarEventWrapper) cevt
-                        .getCalendarEvent()).getEntity());
-                if (entityView != null) {
-                    dispatchMessage(ContextUtil.getMessage(MessageEnum.ADOPT_ME,
-                            entityView));
-                }
-            } else if (CalendarsEvent.ON_EVENT_UPDATE.equals(event.getName())) {
-                if (hasCommand(CommandEnum.UPDATE)) {
-                    Clients.showBusy((Component) base, null);
-                    CalendarsEvent cevt = (CalendarsEvent) event;
-                    cevt.stopClearGhost();
-                    CalendarEventWrapper calendarEventWrapper = (CalendarEventWrapper) cevt.getCalendarEvent();
-                    Entity entityBefore = calendarEventWrapper.getEntity().clone();
-                    Entity entityAfter = calendarEventWrapper.getEntity();
-                    calendarEventWrapper.setBeginDate(cevt.getBeginDate());
-                    calendarEventWrapper.setEndDate(cevt.getEndDate());
-                    if (entityAfter.validate().isEmpty()) {
-                        processEntityUpdate(entityAfter);
-                        Events.echoEvent(ON_EVENT_UPDATE_ECHO, event.getTarget(), entityAfter);
-                    } else {
-                        calendarEventWrapper.update(entityBefore);  //rollback
-                        ZkUtil.displayMessage(L10nMessages.L10N_VALIDATION_ERRORS.toString(),
-                                true, calendar);
-                        Clients.clearBusy((Component) base);
-                        cevt.clearGhost();
-                    }
-                }
-            } else if (ON_EVENT_UPDATE_ECHO.equals(event.getName())) {
-                Clients.clearBusy((Component) base);
-                Entity entity = (Entity) event.getData();
-
-                try {
-                    ContextUtil.getDWS().save(entity);
-                } catch (Exception e) {
-                    ZkUtil.displayMessage(DefaultEntityPersisterDialog.L10N_MESSAGE_UNEXPECTED_ERRORS.toString(),
-                            true, calendar);
-                }
-
-                dispatchMessage(ContextUtil.getMessage(ENTITY_UPDATED, DefaultCalendarViewPanel.this,
-                        MessageArgEnum.ARG_ITEM, entity));
-
-            }
-        }
     }
 
     @Override
@@ -674,6 +624,92 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
             }
         }
         return null;
+    }
+
+    private class CalendarsEventHandler implements EventListener<Event> {
+
+        @Override
+        public void onEvent(Event event) throws Exception {
+            if (CalendarsEvent.ON_EVENT_CREATE.equals(event.getName())) {
+                if (hasCommand(CommandEnum.ADDNEW)) {
+                    CalendarsEvent cevt = (CalendarsEvent) event;
+                    Command addnew = getCommand(CommandEnum.ADDNEW);
+                    addnew.setArg(ATTRIB_BEGIN_DATE, cevt.getBeginDate());
+                    addnew.setArg(ATTRIB_END_DATE, cevt.getEndDate());
+                    processValidCommand(addnew);
+                    addnew.removeArgs();
+                }
+            } else if (CalendarsEvent.ON_EVENT_EDIT.equals(event.getName())) {
+                CalendarsEvent cevt = (CalendarsEvent) event;
+                Panel entityView = CoreUtil.getEntityViewPanel(((CalendarEventWrapper) cevt
+                        .getCalendarEvent()).getEntity());
+                if (entityView != null) {
+                    dispatchMessage(ContextUtil.getMessage(MessageEnum.ADOPT_ME,
+                            entityView));
+                }
+            } else if (CalendarsEvent.ON_EVENT_UPDATE.equals(event.getName())) {
+                if (hasCommand(CommandEnum.UPDATE)) {
+                    Clients.showBusy((Component) base, null);
+                    CalendarsEvent cevt = (CalendarsEvent) event;
+                    cevt.stopClearGhost();
+                    CalendarEventWrapper calendarEventWrapper = (CalendarEventWrapper) cevt.getCalendarEvent();
+                    Entity entityBefore = calendarEventWrapper.getEntity().clone();
+                    Entity entityAfter = calendarEventWrapper.getEntity();
+                    calendarEventWrapper.setBeginDate(cevt.getBeginDate());
+                    calendarEventWrapper.setEndDate(cevt.getEndDate());
+                    if (entityAfter.validate().isEmpty()) {
+                        processEntityUpdate(entityAfter);
+                        Events.echoEvent(ON_EVENT_UPDATE_ECHO, event.getTarget(), entityAfter);
+                    } else {
+                        calendarEventWrapper.update(entityBefore);  //rollback
+                        ZkUtil.displayMessage(L10nMessages.L10N_VALIDATION_ERRORS.toString(),
+                                true, calendar);
+                        Clients.clearBusy((Component) base);
+                        cevt.clearGhost();
+                    }
+                }
+            } else if (ON_EVENT_UPDATE_ECHO.equals(event.getName())) {
+                Clients.clearBusy((Component) base);
+                Entity entity = (Entity) event.getData();
+
+                try {
+                    ContextUtil.getDWS().save(entity);
+                } catch (Exception e) {
+                    ZkUtil.displayMessage(DefaultEntityPersisterDialog.L10N_MESSAGE_UNEXPECTED_ERRORS.toString(),
+                            true, calendar);
+                }
+
+                dispatchMessage(ContextUtil.getMessage(ENTITY_UPDATED, DefaultCalendarViewPanel.this,
+                        MessageArgEnum.ARG_ITEM, entity));
+
+            } else if (CalendarsEvent.ON_DAY_CLICK.equals(event.getName())) {
+                Clients.showBusy(null);
+                Events.echoEvent(ON_DAY_CLICK_ECHO, event.getTarget(), event.getData());
+            } else if (CalendarsEvent.ON_WEEK_CLICK.equals(event.getName())) {
+                Clients.showBusy(null);
+                Events.echoEvent(ON_WEEK_CLICK_ECHO, event.getTarget(), event.getData());
+            } else if (ON_DAY_CLICK_ECHO.equals(event.getName())) {
+                focus(((Date) event.getData()), 1);
+            } else if (ON_WEEK_CLICK_ECHO.equals(event.getName())) {
+                focus(((Date) event.getData()), 7);
+            }
+
+        }
+    }
+
+    private void focus(Date date, int span) {
+        Clients.clearBusy();
+        CalendarViewPanel panel = ContextUtil.getDefaultPanel(CalendarViewPanel.class);
+        panel.setSettings(getSettings());
+        panel.setCurrentDate(date);
+        panel.setSettingValue(SettingEnum.PANEL_NAME, panel.getSettingValue(SettingEnum.PANEL_NAME,
+                "") + " (Focused)");
+        panel.setSettingValue(SettingEnum.MOLD, "default");
+        panel.setSettingValue(CalendarSettingEnum.CALENDAR_DAYS, span);
+        if (hasMasterEntity()) {
+            panel.setMasterEntity(getMasterEntity());
+        }
+        dispatchMessage(ContextUtil.getMessage(MessageEnum.ADOPT_ME, panel));
     }
 
 
