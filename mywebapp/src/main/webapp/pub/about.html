@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+﻿<!--
   ~ Copyright (c) 2013 Veniamin Isaias
   ~
   ~ This file is part of web4thejob-sandbox.
@@ -18,19 +17,172 @@
   ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
 <head>
     <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="../favicon.ico">
-    <title>About sandbox</title>
+    <title>About this sandbox</title>
+    <style type="text/css">
+        body {
+        font: normal 87.5%/1.4 Arial,sans-serif;
+        color: #333;
+        background-color: #FFFFFF;
+        margin: 0px;
+        background-image:url('../img/watermark.png');
+        }
+        h1, h2,h3 {
+        color: rgb(38,129,169);
+        }
+        #textbox {
+        margin: 0 auto;
+        max-width:75em;
+        min-height:600px;
+        background-color:rgba(255, 255, 255, 0.6);
+        border: 1px solid rgb(206, 206, 206);
+        padding:10px;
+        border-radius: 10px;
+        }
+        .term {
+        font-style: italic;
+        }
+        .backlink-box {
+        margin: 0 auto;
+        max-width:75em;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        }
+        .link {
+        color:#78b428;
+        }
+        .link:hover {
+        color:#b13dcc;
+        }
+    </style>
 </head>
 <body>
-<h3 id="admin">admin</h3>
+<div style="margin:50px;">
+    <div class="backlink-box">
+        <a onclick="history.go(-1);return true;"><img src="round_left_arrow.png" title="Back" alt="Back"/></a>
+    </div>
+    <div id="textbox">
+        <h1>About this sandbox</h1>
 
-<p>The admin user can access everything</p>
+        <h2>Abstract</h2>
 
-<h3 id="user1">user1</h3>
+        <p>
+            A key challenge for all businesses in our digitally driven economy is their endeavor to build an IT
+            infrastructure that is both
+            <span class="term">widely open</span> to the benefits of the constantly evolving number of the SaaS
+            offerings and at the same time
+            <span class="term">tightly closed</span> to the security risks that come together with the internet
+            territory. Additionally,
+            the businesses of all sizes should take similar decisions on the appropriate levels of outsourcing and
+            ownership:
+            should they develop in-house and own more, or should they outsource everything and own less?
+        </p>
+
+        <p>
+            This demo web application attempts to <span class="term">inspire</span> its visitors on this matter and at
+            the same time to indicate how they can accomplish an equilibrium using
+            web4thejob and a number of other free on line services.
+        </p>
+
+        <h2>The Problem</h2>
+
+        <p>
+            Let’s assume you’re a web4thejob Community developer who needs to have a web based Personal Organizer for
+            keeping track of your projects and following
+            the activities of the web4thejob Community. You also want to have the application installed on the cloud so
+            that it is constantly accessible from
+            either your laptop or your tablet. Finally, you want to be able to create user accounts with limited access
+            for the people you either work with or
+            work for.
+        </p>
+
+        <h2>The Solution</h2>
+
+        <p>
+            This sandbox aspires to solve the aforementioned problem by topping web4thejob’s intrinsic functionality
+            with 1 <a class="link" href="http://wiki.web4thejob.org/miscel/glossary/joblet" target="_blank">joblet</a>
+            and 1
+            <a class="link" href="http://web4thejob.org/f-a-q/34-what-is-a-plugin" target="_blank">plugin</a>. The
+            joblet dubbed
+            <strong>“myprojects”</strong> provides the <a class="link" href="joblets.html">relation schema</a> that will
+            host your business data, while the plugin named <strong>
+            “mycalendar”</strong> facilitates a flexible calendar view of your agenda similar to that of Google
+            Calendar. A second joblet dubbed <strong>“mydocumentation”</strong> is also installed but its purpose is
+            strictly educational,
+            i.e. it embeds a dynamic help bar at the right hand-side of the screen that provides on-line help based on
+            your actions.
+        </p>
+
+        <p>
+            The sandbox demonstrates the coupling of various public data services (e.g. twitter and github timelines,
+            google maps frames, a countdown clock from
+            countdown.org and incorporation of numerous other web pages) with the private business data of your
+            application. All these are glued together nicely
+            by the sophisticated panel-based UI engine of web4thejob and safeguarded by its flexible security policies.
+            This way you remain the sole owner of your business sources (i.e. the joblet) and its
+            data to change them as you see fit.
+        </p>
+
+        <p><span style="font-weight:bold">Note: </span> All changes in this sandbox are cleaned frequently by
+            an automated procedure.
+            Therefore you are encouraged to experiment with the application as much as you like.
+            However, if you catch yourself messing with the configuration too much, or notice some unexpected behavior
+            while using the sandbox online, consider <a class="link" href="http://sf.net" target="_blank">downloading a
+                private copy</a>
+            of this sandbox so that the changes you perform will not impact the experience of others and vice versa.
+        </p>
+
+        <h2>The User Accounts</h2>
+        <ul>
+            <li><h3 id="mypm-rw">mypm-rw</h3>
+                This is a full access user account that is authorized to read and write on all entities without
+                exceptions.
+                The account is also authorized to start the design of new panels and to modify any of the existing ones.
+                If this is your first time here <strong>definitely start with this account</strong>.
+            </li>
+            <li><h3 id="mypm-ro">mypm-ro</h3>
+                This is a read only access user account. This means that while it is authorized to access the same
+                information as <span class="term">mypm-rw</span>,
+                the permission for it to insert, update and delete entities has been revoked throughout the application.
+                The purpose of this account is to demonstrate some of the security features that web4thejob offers
+                out-of-the-box.
+            </li>
+            <li><h3 id="mypm-guest">mypm-guest</h3>
+                This is an even more restrictive account meaning that on top of the fact that all insert, update and
+                delete permissions have been revoked,
+                it's user menu has suffered significant limitations, thus leaving accessible only a small subset of
+                panels in accordance with a low clearance guest profile.
+                Once more, the purpose here is to demonstrate further the flexibility of the security engine that comes
+                with web4thejob
+            </li>
+            <li><h3 id="admin">admin</h3>
+                This is the framework's built-in full access administrative account.
+                No limitation can ever be imposed on this account.
+                To sign in as <span class="term">admin</span>, first sign in as <span class="term">mypm-rw</span> or
+                <span class="term">mypm-ro</span> and then look for the User > About dialog.
+            </li>
+        </ul>
+
+        <h2>The License</h2>
+
+        <p>
+            Except where otherwise noted, the sources and the content on this sandbox is licensed under the
+            <a class="link" href="http://www.gnu.org/licenses/gpl.html" target="_blank">GNU General Public License
+                v3</a>.
+        </p>
+    </div>
+    <div class="backlink-box">
+        <a onclick="history.go(-1);return true;"><img src="round_left_arrow.png" title="Back" alt="Back"/></a>
+    </div>
+</div>
+
 
 </body>
+
 </html>

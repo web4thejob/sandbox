@@ -1,0 +1,98 @@
+﻿<!--
+  ~ Copyright (c) 2013 Veniamin Isaias
+  ~
+  ~ This file is part of web4thejob-sandbox.
+  ~
+  ~ Web4thejob-sandbox is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Web4thejob-sandbox is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
+<head>
+    <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <title>Joblets ER diagram and ORM sources</title>
+    <style type="text/css">
+        body {
+        font: normal 87.5%/1.4 Arial,sans-serif;
+        color: #333;
+        background-color: #FFFFFF;
+        margin: 0px;
+        background-image:url('../img/watermark.png');
+        }
+        h1, h2,h3 {
+        color: rgb(38,129,169);
+        }
+        #textbox {
+        margin: 0 auto;
+        max-width:75em;
+        min-height:600px;
+        background-color:rgba(255, 255, 255, 0.6);
+        border: 1px solid rgb(206, 206, 206);
+        padding:10px;
+        border-radius: 10px;
+        }
+        #span-italic {
+        font-style: italic;
+        }
+        .backlink-box {
+        margin: 0 auto;
+        max-width:75em;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        }
+        .link {
+        color:#78b428;
+        }
+        .link:hover {
+        color:#b13dcc;
+        }
+
+    </style>
+</head>
+<body>
+<div style="margin:50px;">
+    <div class="backlink-box">
+        <a onclick="history.go(-1);return true;"><img src="round_left_arrow.png" title="Back" alt="Back"/></a>
+    </div>
+    <div id="textbox">
+        <h1>Joblets ER diagram and ORM sources</h1>
+
+        <h2>ORM sources</h2>
+        <ul>
+            <li><h3><strong>myprojects</strong> (<a class="link"
+                                                    href="https://github.com/web4thejob/sandbox/tree/master/myprojects/src/main/resources/job/myprojects">xml</a>,
+                <a class="link"
+                   href="https://github.com/web4thejob/sandbox/tree/master/myprojects/src/main/java/job/myprojects">java</a>)
+            </h3></li>
+            <li><h3><strong>mydocumentation</strong> (<a class="link"
+                                                         href="https://github.com/web4thejob/sandbox/blob/master/mywebapp/src/main/resources/org/web4thejob/sandbox/orm/Document.hbm.xml">xml</a>,
+                <a class="link"
+                   href="https://github.com/web4thejob/sandbox/blob/master/mywebapp/src/main/java/org/web4thejob/sandbox/orm/Document.java">java</a>)
+            </h3></li>
+        </ul>
+        <h2>ER diagram</h2>
+        <img src="joblets.png" alt="Joblets diagram"/>
+    </div>
+    <div class="backlink-box">
+        <a onclick="history.go(-1);return true;"><img src="round_left_arrow.png" title="Back" alt="Back"/></a>
+    </div>
+</div>
+
+
+</body>
+
+</html>

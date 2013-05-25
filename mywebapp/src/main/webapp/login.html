@@ -19,29 +19,72 @@
   ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr"
-      style="height: 100%;">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
+
 <head>
     <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
     <link rel="shortcut icon" href="favicon.ico">
     <title>web4thejob sandbox >> Login Page</title>
     <script type="text/javascript" src="./js/loginSupport.js"></script>
+    <style type="text/css">
+        body {
+        font-family:arial, sans-serif;
+        background-color: #FFFFFF;
+        height: 100%;margin: 0px;
+        background-image:url('img/watermark.png');
+        }
+        .link {
+        color:#78b428;
+        }
+        .link:hover {
+        color:#b13dcc;
+        }
+        .quote {
+        font: normal 160%/1.4 Times,sans-serif;
+        font-style: italic;
+        color: #444;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        }
+        .sandbox-tag {
+        color: #444;
+        font-weight: bold;
+        font-size: 14pt;
+        }
+        .about {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        }
+
+    </style>
 </head>
-<body onload="handleLogin();"
-      style="font-family:arial, sans-serif; background-color: #FFFFFF; height: 100%;;margin: 0px;background-image:url('img/watermark.png');">
+<body onload="handleLogin();">
 <table style="height: 100%; width: 100%">
     <tbody>
     <tr valign="middle" style="height: 300px">
         <td align="center">
-            <a href="http://web4thejob.org"><img style="border-style: none;margin-top:50px;margin-bottom:20px;"
+            <a href="http://web4thejob.org"><img style="border-style: none;margin-top:50px;"
                                                  src="img/w4tj_logo_vertical_full.png"
-                                                 title="Put your logo here"/></a>
+                                                 title="Put your logo here" alt="logo"/></a>
         </td>
     </tr>
+    <tr valign="middle">
+        <td align="center">
+            <div class="sandbox-tag">@sandbox</div>
+        </td>
+    </tr>
+
+    <tr valign="middle">
+        <td align="center">
+            <div class="quote">&#171;A sandbox is good not only for cats&#187;</div>
+        </td>
+    </tr>
+
     <tr valign="top">
         <td align="center">
-            <form name="f" action="j_spring_security_check" method="POST">
+            <form action="j_spring_security_check" method="POST">
                 <table style="height: 70px">
                     <tbody>
                     <tr>
@@ -70,7 +113,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td/>
+                        <td></td>
                         <td align="left">
                             <input name="submit" type="submit" value="Sign in"/>
                         </td>
@@ -81,24 +124,17 @@
         </td>
     </tr>
 
-    <tr valign="top">
-        <td align="middle">
-            <div style="width:788px; font-size:14px;text-align:justify;margin:10px;padding:3px;line-height:130%;border-width:1px 0px 1px 0px;border-style:dotted;border-color:rgb(150,150,150);">
-                <span style="font-weight:bold">Note: </span> All changes in this sandbox are cleaned on a daily basis by
-                an automated procedure.
-                Therefore you are encouraged to experiment with the application as much as you like.
-                However, if you catch yourself messing with the configuration extensively,
-                consider <a href="http://sf" target="_blank">downloading a private copy</a> of this sandbox so that the
-                changes you perform will not impact
-                the experience of others. Similarly, if you notice some strange behavior while using the sandbox online,
-                think of downloading a private copy or return back here the following day.
+    <tr>
+        <td align="center">
+            <div class="about">
+                <strong><a class="link" href="pub/about.html">What is this all about?</a></strong>
             </div>
         </td>
     </tr>
 
     <tr valign="top">
-        <td align="middle">
-            <iframe src="pub/userslist.zul" frameborder="0" align="middle" width="800px" height="200px"
+        <td align="center">
+            <iframe src="pub/userslist.zul" frameborder="0" align="middle" width="550px" height="200px"
                     scrolling="auto"></iframe>
         </td>
     </tr>
