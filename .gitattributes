@@ -5,10 +5,10 @@
 # to native line endings on checkout.
 *.java text
 *.xml text
-*.html
-*.zul
-*.txt
-*.log
+*.html text
+*.zul text
+*.txt text
+*.log text
 
 # Denote all files that are truly binary and should not be modified.
 *.png binary
