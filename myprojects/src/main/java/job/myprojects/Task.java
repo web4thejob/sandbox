@@ -237,19 +237,19 @@ public class Task extends AbstractHibernateEntity {
 
         if (!isStartTimeValid()) {
             violations.add(new AdhocConstraintViolation(
-                    "{org.web4thejob.model.constraint.NotBefore.message}", "startTime",
+                    "org.web4thejob.model.constraint.NotBefore.message", "startTime",
                     this, startTime));
         }
 
         if (!isEndTimeValid()) {
             violations.add(new AdhocConstraintViolation(
-                    "{org.web4thejob.model.constraint.NotAfter.message}", "endTime",
+                    "org.web4thejob.model.constraint.NotAfter.message", "endTime",
                     this, endTime));
         }
 
         if (!isNotBillableValid()) {
             violations.add(new AdhocConstraintViolation(
-                    "{org.web4thejob.model.constraint.LimitExcess.message}", "notBillable",
+                    "org.web4thejob.model.constraint.LimitExcess.message", "notBillable",
                     this, notBillable));
         }
 
