@@ -50,7 +50,7 @@
                                 <a style="padding-left: 15px;" href="http://web4thejob.org" image="img/w4tj_logo_35.png"/>
                             </hbox>
                             <hbox hflex="true" vflex="true" pack="end" align="center">
-                                <!--put something else in here -->
+                                <html><a style="font-family:Arial;font-weight:bold;color:#91DA30;margin-right:10px;" target="_blank" href="https://sourceforge.net/web4thejob-sandbox">Download this sandbox</a></html>
                             </hbox>
                         </hlayout>
                 </north>
