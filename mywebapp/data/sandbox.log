@@ -1,160 +1,89 @@
 /*C1*/SET SCHEMA SYSTEM_LOBS
-INSERT INTO LOB_IDS VALUES(120,2282,0,40)
+INSERT INTO LOB_IDS VALUES(412,1183375,0,30)
 COMMIT
-ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 121
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=196
-INSERT INTO BLOCKS VALUES(196,1,0)
-INSERT INTO BLOCKS VALUES(197,2147483450,0)
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=196
-INSERT INTO LOBS VALUES(196,1,0,120)
-COMMIT
-/*C6*/SET SCHEMA W4TJ
-INSERT INTO "PANEL_DEFINITION" VALUES(61,0,'org.web4thejob.web.panel.DefaultFramePanel-panel_ccc25c1d-143d-44bb-b118-7e2da55ed8c0','Send us your feedback','','','org.web4thejob.web.panel.DefaultFramePanel, org.web4thejob.web.panel.FramePanel','[TARGET_TYPE=null] [MASTER_TYPE=null] [BIND_PROPERTY=null] [MASTER_DETAIL=false]',4,120)
-SET SCHEMA SYSTEM_LOBS
-DELETE FROM LOB_IDS WHERE LOB_ID=120
-INSERT INTO LOB_IDS VALUES(120,2282,1,40)
-COMMIT
-/*C1*/INSERT INTO LOB_IDS VALUES(121,2627,0,40)
-COMMIT
-ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 122
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=197
-INSERT INTO BLOCKS VALUES(197,1,0)
-INSERT INTO BLOCKS VALUES(198,2147483449,0)
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=197
-INSERT INTO LOBS VALUES(197,1,0,121)
-COMMIT
-/*C8*/SET SCHEMA W4TJ
-DELETE FROM "AUTH_STRUCTURE" WHERE "ID"=2
-INSERT INTO "AUTH_STRUCTURE" VALUES(2,6,'Project Manager',121)
-SET SCHEMA SYSTEM_LOBS
-DELETE FROM LOB_IDS WHERE LOB_ID=76
-INSERT INTO LOB_IDS VALUES(76,2527,0,40)
-DELETE FROM LOB_IDS WHERE LOB_ID=121
-INSERT INTO LOB_IDS VALUES(121,2627,1,40)
-COMMIT
-/*C1*/INSERT INTO LOB_IDS VALUES(122,2282,0,40)
-COMMIT
-ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 123
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=198
-INSERT INTO BLOCKS VALUES(198,1,0)
-INSERT INTO BLOCKS VALUES(199,2147483448,0)
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=198
-INSERT INTO LOBS VALUES(198,1,0,122)
-COMMIT
-/*C8*/SET SCHEMA W4TJ
-DELETE FROM "PANEL_DEFINITION" WHERE "ID"=61
-INSERT INTO "PANEL_DEFINITION" VALUES(61,1,'org.web4thejob.web.panel.DefaultFramePanel-panel_ccc25c1d-143d-44bb-b118-7e2da55ed8c0','Send us your feedback','','img/feedback.png','org.web4thejob.web.panel.DefaultFramePanel, org.web4thejob.web.panel.FramePanel','[TARGET_TYPE=null] [MASTER_TYPE=null] [BIND_PROPERTY=null] [MASTER_DETAIL=false]',4,122)
-SET SCHEMA SYSTEM_LOBS
-DELETE FROM LOB_IDS WHERE LOB_ID=120
-INSERT INTO LOB_IDS VALUES(120,2282,0,40)
-DELETE FROM LOB_IDS WHERE LOB_ID=122
-INSERT INTO LOB_IDS VALUES(122,2282,1,40)
-COMMIT
-/*C1*/INSERT INTO LOB_IDS VALUES(123,75,0,40)
-COMMIT
-ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 124
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=199
-INSERT INTO BLOCKS VALUES(199,1,0)
-INSERT INTO BLOCKS VALUES(200,2147483447,0)
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=199
-INSERT INTO LOBS VALUES(199,1,0,123)
-COMMIT
-/*C8*/SET SCHEMA SANDBOX
-INSERT INTO "DOCUMENT" VALUES(5,'home',123)
-SET SCHEMA SYSTEM_LOBS
-DELETE FROM LOB_IDS WHERE LOB_ID=123
-INSERT INTO LOB_IDS VALUES(123,75,1,40)
-COMMIT
-/*C1*/INSERT INTO LOB_IDS VALUES(124,21,0,40)
-COMMIT
-ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 125
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=200
-INSERT INTO BLOCKS VALUES(200,1,0)
-INSERT INTO BLOCKS VALUES(201,2147483446,0)
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=200
-INSERT INTO LOBS VALUES(200,1,0,124)
-COMMIT
-/*C8*/SET SCHEMA W4TJ
-INSERT INTO "QUERY" VALUES(2,0,'home','org.web4thejob.sandbox.orm.Document',FALSE,'',4)
-INSERT INTO "CRITERION" VALUES(1,2,'code','EQU',124,FALSE,0)
-DELETE FROM "CRITERION" WHERE "ID"=1
-INSERT INTO "CRITERION" VALUES(1,2,'code','EQU',124,FALSE,0)
-SET SCHEMA SYSTEM_LOBS
-DELETE FROM LOB_IDS WHERE LOB_ID=124
-INSERT INTO LOB_IDS VALUES(124,21,1,40)
-DELETE FROM LOB_IDS WHERE LOB_ID=124
-INSERT INTO LOB_IDS VALUES(124,21,0,40)
-DELETE FROM LOB_IDS WHERE LOB_ID=124
-INSERT INTO LOB_IDS VALUES(124,21,1,40)
-COMMIT
-/*C7*/SET SCHEMA W4TJ
-DELETE FROM "PANEL_DEFINITION" WHERE "ID"=60
-SET SCHEMA SYSTEM_LOBS
-DELETE FROM LOB_IDS WHERE LOB_ID=119
-INSERT INTO LOB_IDS VALUES(119,18577,0,40)
-COMMIT
-/*C1*/INSERT INTO LOB_IDS VALUES(125,18580,0,40)
-COMMIT
-ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 126
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=201
-INSERT INTO BLOCKS VALUES(201,2,0)
-INSERT INTO BLOCKS VALUES(203,2147483444,0)
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=201
-INSERT INTO LOBS VALUES(201,2,0,125)
-COMMIT
-/*C7*/SET SCHEMA W4TJ
-INSERT INTO "PANEL_DEFINITION" VALUES(62,0,'org.web4thejob.web.panel.DefaultDesktopLayoutPanel-panel_02ef1d76-8f22-475d-99bc-8ed39f726fc3','mypm-full\Desktop',NULL,NULL,'org.web4thejob.web.panel.DefaultDesktopLayoutPanel, org.web4thejob.web.panel.DesktopLayoutPanel, org.web4thejob.util.L10nMessages',NULL,4,125)
-SET SCHEMA SYSTEM_LOBS
-DELETE FROM LOB_IDS WHERE LOB_ID=125
-INSERT INTO LOB_IDS VALUES(125,18580,1,40)
-COMMIT
-/*C1*/INSERT INTO LOB_IDS VALUES(126,2277217,0,30)
-COMMIT
-ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 127
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=203
-INSERT INTO BLOCKS VALUES(203,70,0)
-INSERT INTO BLOCKS VALUES(273,2147483374,0)
-DELETE FROM BLOCKS WHERE BLOCK_ADDR=203
-INSERT INTO LOBS VALUES(203,70,0,126)
+ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 413
+DELETE FROM BLOCKS WHERE BLOCK_ADDR=2965
+INSERT INTO BLOCKS VALUES(2965,37,0)
+INSERT INTO BLOCKS VALUES(3002,2147480645,0)
+DELETE FROM BLOCKS WHERE BLOCK_ADDR=2965
+INSERT INTO LOBS VALUES(2965,37,0,412)
 COMMIT
 /*C7*/SET SCHEMA MYPM
-DELETE FROM VENUEIMAGE WHERE ID=2
-INSERT INTO VENUEIMAGE VALUES(2,126)
+DELETE FROM TASK WHERE ID=9
+INSERT INTO TASK VALUES(9,3,'OSGi','darkturquoise','darkturquoise','2013-05-26 08:00:00.000000','2013-05-26 17:00:00.000000',4,0.00,'<p>\u000a\u0009The OSGi technology is a set of specifications that define a dynamic component system for Java. These specifications enable a development model where applications are (dynamically) composed of many different (reusable) components. The OSGi specifications enable components to hide their implementations from other components while communicating through services, which are objects that are specifically shared between components. This surprisingly simple model has far reaching effects for almost any aspect of the software development process.</p>\u000a<p>\u000a\u0009Though components have been on the horizon for a long time, so far they failed to make good on their promises. <span style="background-color:#ffff00;">OSGi is the first technology that actually succeeded with a component system that is solving many real problems in software development. </span>Adopters of OSGi technology see significantly reduced complexity in almost all aspects of development. Code is easier to write and test, reuse is increased, build systems become significantly simpler, deployment is more manageable, bugs are detected early, and the runtime provides an enormous insight into what is running. Most important, it works as is testified by the wide adoption and use in popular applications like Eclipse and Spring. We developed the OSGi technology to create a collaborative software environment. We were not looking for the possibility to run multiple applications in a single VM.</p>\u000a<p>\u000a\u0009Application servers do that already (though they were not yet around when we started in 1998). No, our problem was harder. We wanted an application to emerge from putting together different reusable components that had no a-priori knowledge of each other. Even harder, we wanted that application to emerge from dynamically assembling a set of components. For example, you have a home server that is capable of managing your lights and appliances. A component could allow you to turn on and off the light over a web page. Another component could allow you to control the appliances via a mobile text message. The goal was to allow these other functions to be added without requiring that the developers had intricate knowledge of each other and let these components be added independently.</p>\u000a','http://www.osgi.org/Technology/WhatIsOSGi',FALSE,FALSE,0.00,NULL)
+DELETE FROM TASKATTACHMENT WHERE ID=9
+INSERT INTO TASKATTACHMENT VALUES(9,412)
 SET SCHEMA SYSTEM_LOBS
-DELETE FROM LOB_IDS WHERE LOB_ID=116
-INSERT INTO LOB_IDS VALUES(116,2047,0,30)
-DELETE FROM LOB_IDS WHERE LOB_ID=126
-INSERT INTO LOB_IDS VALUES(126,2277217,1,30)
+DELETE FROM LOB_IDS WHERE LOB_ID=407
+INSERT INTO LOB_IDS VALUES(407,1183375,0,30)
+DELETE FROM LOB_IDS WHERE LOB_ID=412
+INSERT INTO LOB_IDS VALUES(412,1183375,1,30)
 COMMIT
 SET SCHEMA MYPM
-INSERT INTO TASK VALUES(5,2,'Pitch','orange','orange','2013-04-17 22:30:00.000000','2013-04-17 23:30:00.000000',NULL,0.00,NULL,FALSE,FALSE,0.00,NULL)
+DELETE FROM TASK WHERE ID=12
+INSERT INTO TASK VALUES(12,4,'CRM Joblet','orange','orange','2013-05-28 08:00:00.000000','2013-05-28 13:00:00.000000',4,25.00,'<p>\u000a\u0009It is very hard to think of a business domain that does not relate in some way to the notion of &ldquo;Contacts&rdquo;, i.e. physical and legal entities of various roles. Regardless of whether it is about an Employee, a Student, a Vet, a Patient, a Member, a Guest, a Customer, an Author, a Tax payer, an Investor, a Soldier, a Supplier, a Foundation, a University, a Listed Company or anything else, from a persistence point of view it all comes down to validating, storing and querying a common minimum set of data: personal information (e.g. names, dates, ids, notes etc ) and addresses (e.g. home address, work address, mailing address etc).</p>\u000a<p>\u000a\u0009From the moment you realize this - most probably - the next question that pops up into your mind is:</p>\u000a<blockquote>\u000a\u0009<p>\u000a\u0009\u0009<span style="font-family:times new roman,times,serif;"><em>&quot;<span style="font-size:14px;">How can I avoid coding repetitively the common parts of my Contact related entities, so that I can focus right from the start on what is really important in my business domain?</span>&quot;</em></span></p>\u000a</blockquote>\u000a<p>\u000a\u0009The answer to this question is the Contacts joblet.</p>\u000a<p>\u000a\u0009The Contacts joblet (project name joblet-contacts) is a subproject of web4thejob that targets in providing to the community a reliable starting point for incorporating the functionality of a Contact Manager into a web application effortlessly. More precisely, the joblet offers the engine for storing two types of contacts: the physical contacts and the legal contacts. The former represent all physical entities like Customers, Patients and Guests, while the latter represent all non-physical entities like Companies, Organizations and Universities. The joblet also supports the persistence of relations between the physical and legal entities. This means that it can answer queries like which Employee works for which Company, or which Guest is staying in which Hotel, or which Professor visits which University.&nbsp;</p>\u000a',NULL,FALSE,FALSE,0.00,NULL)
 COMMIT
-INSERT INTO VENUENOTES VALUES(2,'<p>\u000a\u0009ddsadsadsa</p>\u000a')
+DELETE FROM TASK WHERE ID=15
+INSERT INTO TASK VALUES(15,3,'OSGi','darkturquoise','darkturquoise','2013-05-28 14:00:00.000000','2013-05-28 18:30:00.000000',4,0.00,NULL,NULL,FALSE,FALSE,0.00,NULL)
 COMMIT
-DELETE FROM VENUENOTES WHERE ID=2
+/*C1*/INSERT INTO LOB_IDS VALUES(413,1457141,0,30)
 COMMIT
-DELETE FROM VENUE WHERE ID=2
-INSERT INTO VENUE VALUES(2,'V2','','','',NULL,0,'','http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Hilton+Athens,+Athens,+Greece&aq=0&oq=athens+hilto&sll=37.0625,-95.677068&sspn=48.956293,93.076172&t=h&ie=UTF8&hq=Hilton+Athens,+Athens,+Greece&z=18&iwloc=A&output=embed')
+ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 414
+DELETE FROM BLOCKS WHERE BLOCK_ADDR=3002
+INSERT INTO BLOCKS VALUES(3002,45,0)
+INSERT INTO BLOCKS VALUES(3047,2147480600,0)
+DELETE FROM BLOCKS WHERE BLOCK_ADDR=3002
+INSERT INTO LOBS VALUES(3002,45,0,413)
 COMMIT
-/*C6*/SET SCHEMA MYPM
-INSERT INTO TASK VALUES(6,2,'Pitch 3','orange','orange','2013-04-13 12:00:00.000000','2013-04-13 14:30:00.000000',NULL,0.00,NULL,FALSE,FALSE,0.00,NULL)
+/*C7*/DELETE FROM TASK WHERE ID=13
+INSERT INTO TASK VALUES(13,6,'HSearch','blue','blue','2013-05-29 08:00:00.000000','2013-05-29 16:30:00.000000',4,0.00,'<p>\u000a\u0009&nbsp;</p>\u000a<h4 style="letter-spacing: -0.06em; font-family: ''Lucida Sans'', ''Lucida Sans Unicode'', ''Lucida Grande'', Verdana, Arial, Helvetica, sans-serif; font-weight: normal; color: rgb(73, 73, 73); font-size: 21px; margin: 3px 0px;">\u000a\u0009Hibernate Search</h4>\u000a<p style="color: rgb(85, 85, 85); font-family: ''Lucida Sans Unicode'', ''Lucida Grande'', sans-serif; line-height: 18px;">\u000a\u0009Hibernate Search brings the power of full text search engines to the persistence domain model by combining Hibernate Core with the capabilities of the<a href="http://lucene.apache.org/" style="color: rgb(51, 102, 153); text-decoration: none;">&nbsp;Apache Lucene&trade;</a>&nbsp;search engine.</p>\u000a<p style="color: rgb(85, 85, 85); font-family: ''Lucida Sans Unicode'', ''Lucida Grande'', sans-serif; line-height: 18px;">\u000a\u0009Full text search engines like Apache Lucene&trade; are very powerful technologies to add efficient free text search capabilities to applications. However, Lucene suffers several mismatches when dealing with object domain models. Amongst other things indexes have to be kept up to date and mismatches between index structure and domain model as well as query mismatches have to be avoided.<br />\u000a\u0009<br />\u000a\u0009Hibernate Search addresses these shortcomings. It indexes your domain model with the help of a few annotations, takes care of database/index synchronization and brings back regular managed objects from free text queries. Hence, it solves:</p>\u000a<ul style="color: rgb(85, 85, 85); font-family: ''Lucida Sans Unicode'', ''Lucida Grande'', sans-serif; line-height: 18px;">\u000a\u0009<li>\u000a\u0009\u0009The structural mismatch: Hibernate Search takes care of the object/index translation</li>\u000a</ul>\u000a<ul style="color: rgb(85, 85, 85); font-family: ''Lucida Sans Unicode'', ''Lucida Grande'', sans-serif; line-height: 18px;">\u000a\u0009<li>\u000a\u0009\u0009The duplication mismatch: Hibernate Search manages the index, keeps changes synchronized with your database, and optimizes the index access transparently</li>\u000a</ul>\u000a<ul style="color: rgb(85, 85, 85); font-family: ''Lucida Sans Unicode'', ''Lucida Grande'', sans-serif; line-height: 18px;">\u000a\u0009<li>\u000a\u0009\u0009The API mismatch: Hibernate Search lets you query the index and retrieve managed objects as any regular Hibernate query would do</li>\u000a</ul>\u000a<p style="color: rgb(85, 85, 85); font-family: ''Lucida Sans Unicode'', ''Lucida Grande'', sans-serif; line-height: 18px;">\u000a\u0009Even though Hibernate Search is using Apache Lucene&trade; under the hood you can always fallback to the native Lucene APIs if the need arises.</p>\u000a<p style="color: rgb(85, 85, 85); font-family: ''Lucida Sans Unicode'', ''Lucida Grande'', sans-serif; line-height: 18px;">\u000a\u0009Depending on application needs, Hibernate Search works well in non-clustered and clustered mode, provides synchronous and asynchronous index updates, allowing you to make an active choice between response, throughput and index update time.</p>\u000a<p style="color: rgb(85, 85, 85); font-family: ''Lucida Sans Unicode'', ''Lucida Grande'', sans-serif; line-height: 18px;">\u000a\u0009Last but not least, Hibernate Search works perfectly with all traditional Hibernate patterns, especially the conversation pattern used by<a href="http://seamframework.org/" style="color: rgb(51, 102, 153); text-decoration: none;">Seam</a>.</p>\u000a','https://hibernate.atlassian.net/browse/HSEARCH',FALSE,FALSE,0.00,NULL)
+DELETE FROM TASKATTACHMENT WHERE ID=13
+INSERT INTO TASKATTACHMENT VALUES(13,413)
+SET SCHEMA SYSTEM_LOBS
+DELETE FROM LOB_IDS WHERE LOB_ID=411
+INSERT INTO LOB_IDS VALUES(411,1457141,0,30)
+DELETE FROM LOB_IDS WHERE LOB_ID=413
+INSERT INTO LOB_IDS VALUES(413,1457141,1,30)
 COMMIT
-DELETE FROM TASK WHERE ID=2
-INSERT INTO TASK VALUES(2,2,'Pitch','orange','orange','2013-04-09 11:30:00.000000','2013-04-09 15:00:00.000000',NULL,0.00,NULL,FALSE,FALSE,0.00,NULL)
+/*C1*/INSERT INTO LOB_IDS VALUES(414,1463738,0,30)
 COMMIT
-/*C8*/SET SCHEMA MYPM
-DELETE FROM TASK WHERE ID=2
-INSERT INTO TASK VALUES(2,2,'Pitch','orange','orange','2013-04-08 12:00:00.000000','2013-04-08 15:30:00.000000',NULL,0.00,NULL,FALSE,FALSE,0.00,NULL)
+ALTER SEQUENCE SYSTEM_LOBS.LOB_ID RESTART WITH 415
+DELETE FROM BLOCKS WHERE BLOCK_ADDR=3047
+INSERT INTO BLOCKS VALUES(3047,45,0)
+INSERT INTO BLOCKS VALUES(3092,2147480555,0)
+DELETE FROM BLOCKS WHERE BLOCK_ADDR=3047
+INSERT INTO LOBS VALUES(3047,45,0,414)
 COMMIT
-/*C6*/DELETE FROM TASK WHERE ID=3
-INSERT INTO TASK VALUES(3,2,'Pitch','orange','orange','2013-04-12 10:00:00.000000','2013-04-12 12:30:00.000000',NULL,0.00,NULL,FALSE,FALSE,0.00,NULL)
+/*C7*/SET SCHEMA MYPM
+DELETE FROM TASK WHERE ID=14
+INSERT INTO TASK VALUES(14,5,'Jasper Plugin','darkcyan','yellowgreen','2013-05-30 08:00:00.000000','2013-05-30 16:30:00.000000',6,25.00,'<p>\u000a\u0009&nbsp;</p>\u000a<h1 class="title" style="margin: 0px 0px 1em 15px; padding: 0px; font-size: 2.5em; font-family: ProximaNovaLtRegular; font-weight: normal; line-height: 1em; color: rgb(51, 51, 51);">\u000a\u0009Getting Started with JasperReports Library</h1>\u000a<div class="content-content" id="content-content" style="margin: 0px; padding: 0px; font-family: Arial, Helvetica, ''Nimbus Sans L'', FreeSans, sans-serif; line-height: 18px;">\u000a\u0009<div class="region region-content content nested grid12-9" id="content" style="margin: 0px; padding: 0px; float: left; width: 900px;">\u000a\u0009\u0009<div class="block block-system first last odd" id="block-system-main" style="margin: 0px 0px 1.5em; padding: 0px; float: left; width: 900px; position: relative;">\u000a\u0009\u0009\u0009<div class="gutter inner clearfix" style="margin: 0px 10px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009<div class="content clearfix" style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009<div about="/wiki/getting-started-jasperreports-library" class="node node-wiki-page odd full-node clearfix" id="node-200606" style="margin: 1em 0px 1.5em; padding: 0px; position: relative;" typeof="sioc:Item foaf:Document">\u000a\u0009\u0009\u0009\u0009\u0009\u0009<div class="inner" style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009<div class="content" style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<div class="field field-name-body field-type-text-with-summary field-label-hidden" style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<div class="field-items" style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<div class="field-item even" property="content:encoded" style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<div class="toc tableofcontents-processed grid12-4" id="toc" style="margin: 3em; padding: 1em 0px 0px; background-color: rgb(249, 249, 249); border: 1px solid rgb(181, 201, 216); font-size: 11px; width: 300px; float: right; max-width: 100%;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<div class="toc-title" style="margin: 0px; padding: 0px; text-align: center; font-weight: bold;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009Table of Contents<span class="toc-toggle-message" style="margin: 0px; padding: 0px;">&nbsp;[<a class="toc-toggle" href="http://community.jaspersoft.com/wiki/getting-started-jasperreports-library#" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">hide</a>]</span></div>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<div class="toc-list tableofcontents-processed" style="margin: 0px; padding: 0px 10px 0px 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<ul style="margin: 0px 0px 1.5em 2em; padding-right: 0px; padding-left: 0px; list-style-type: none; list-style-image: none;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li class="toc-level-2" style="margin: 0px; padding: 0px; line-height: 16px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<a href="http://community.jaspersoft.com/wiki/getting-started-jasperreports-library#What_is_JasperReports_Library" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">What is JasperReports Library?</a></li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li class="toc-level-2" style="margin: 0px; padding: 0px; line-height: 16px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<a href="http://community.jaspersoft.com/wiki/getting-started-jasperreports-library#System_Requirements" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">System Requirements</a></li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li class="toc-level-2" style="margin: 0px; padding: 0px; line-height: 16px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<a href="http://community.jaspersoft.com/wiki/getting-started-jasperreports-library#Installation" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">Installation</a></li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li class="toc-level-2" style="margin: 0px; padding: 0px; line-height: 16px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<a href="http://community.jaspersoft.com/wiki/getting-started-jasperreports-library#Configuration" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">Configuration</a>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<ul style="margin: 0px 0px 0px 2em; padding-right: 0px; padding-left: 0px; list-style-type: none; list-style-image: none;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li class="toc-level-3" style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<a href="http://community.jaspersoft.com/wiki/getting-started-jasperreports-library#Optional_Configurations" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">Optional Configurations</a></li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</ul>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li class="toc-level-2" style="margin: 0px; padding: 0px; line-height: 16px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<a href="http://community.jaspersoft.com/wiki/getting-started-jasperreports-library#Using_JasperReports_Library" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">Using JasperReports Library</a></li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li class="toc-level-2" style="margin: 0px; padding: 0px; line-height: 16px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<a href="http://community.jaspersoft.com/wiki/getting-started-jasperreports-library#See_Also..." style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">See Also...</a></li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</ul>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<h2 id="What_is_JasperReports_Library" style="margin: 0px 0px 0.5em; padding: 0px; font-size: 2em; font-family: ProximaNovaLtRegular; font-weight: normal; line-height: 1.2em; color: rgb(43, 38, 34);">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009What is JasperReports Library?</h2>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<p style="margin: 1em 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009JasperReports Library is a Java Library that offers an interface to JasperReports Library reporting engine. This library is the engine at the core of the&nbsp;<a href="http://community.jaspersoft.com/node/183" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">iReport Designer</a>,&nbsp;<a href="http://community.jaspersoft.com/node/496" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">Jaspersoft Studio</a>, and&nbsp;<a href="http://community.jaspersoft.com/node/212" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">JasperReports Server</a>. In addition, it is embedded in thousands of applications around the world.</p>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<p style="margin: 1em 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009See a list of&nbsp;<a href="http://community.jaspersoft.com/node/205316" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">JasperReports Library Features</a>.</p>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<h2 id="System_Requirements" style="margin: 0px 0px 0.5em; padding: 0px; font-size: 2em; font-family: ProximaNovaLtRegular; font-weight: normal; line-height: 1.2em; color: rgb(43, 38, 34);">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009System Requirements</h2>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<p style="margin: 1em 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009JasperReports Library has few external dependencies.</p>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<p style="margin: 1em 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009All that is required is:</p>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<ul style="margin: 0px 0px 1.5em 2em; padding-right: 0px; padding-left: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009Java JDK 1.6 or higher</li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009JDBC 2.1 driver (if RDBMS used)</li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</ul>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<h2 id="Installation" style="margin: 0px 0px 0.5em; padding: 0px; font-size: 2em; font-family: ProximaNovaLtRegular; font-weight: normal; line-height: 1.2em; color: rgb(43, 38, 34);">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009Installation</h2>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<p style="margin: 1em 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009JasperReports Library is just a .jar file - installation is completed by adding the jar file to your Java classpath along with other required jar files that support the JasperReports Library. &nbsp;For more information see&nbsp;<a href="http://community.jaspersoft.com/node/205313" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">JasperReports Library - First Steps</a>&nbsp;and&nbsp;</p>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<h2 id="Configuration" style="margin: 0px 0px 0.5em; padding: 0px; font-size: 2em; font-family: ProximaNovaLtRegular; font-weight: normal; line-height: 1.2em; color: rgb(43, 38, 34);">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009Configuration</h2>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<h3 id="Optional_Configurations" style="margin: 0px 0px 0.5em; padding: 0px; font-size: 1.5em; font-family: ProximaNovaLtRegular; font-weight: normal; line-height: 1em; color: rgb(85, 85, 85);">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009Optional Configurations</h3>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<p style="margin: 1em 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009Most of the configuration of JasperReports Library is done within the JasperReports Library.properties file (for global settings) or at the report level by setting the appropriate settings within the JRXML.</p>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<ul style="margin: 0px 0px 1.5em 2em; padding-right: 0px; padding-left: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<li style="margin: 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<a href="http://jasperreports.sourceforge.net/config.reference.html" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);" target="_blank">JasperReports Library Configuration Reference</a></li>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</ul>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<h2 id="Using_JasperReports_Library" style="margin: 0px 0px 0.5em; padding: 0px; font-size: 2em; font-family: ProximaNovaLtRegular; font-weight: normal; line-height: 1.2em; color: rgb(43, 38, 34);">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009Using JasperReports Library</h2>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<p style="margin: 1em 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009It is highly recommended when you first get started with JasperReports Library that you leverage the Desktop Report Designer for JasperReports Library,<a href="http://community.jaspersoft.com/node/200603" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">iReport Designer</a>. Many successfully use XML editors to create and modify the JRXML consumed by JasperReports Library, however it is much more effective in the majority of cases to work within&nbsp;<a href="http://community.jaspersoft.com/node/200603" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">iReport Designer</a>. The JasperReports Library project includes many samples which can be found&nbsp;<a href="http://community.jaspersoft.com/node/205317" style="margin: 0px; padding: 0px; text-decoration: none; color: rgb(83, 141, 194);">here</a></p>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<h2 id="See_Also..." style="margin: 0px 0px 0.5em; padding: 0px; font-size: 2em; font-family: ProximaNovaLtRegular; font-weight: normal; line-height: 1.2em; color: rgb(43, 38, 34);">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009See Also...</h2>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009<p style="margin: 1em 0px; padding: 0px;">\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009For additional information, see the following resources:</p>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009\u0009</div>\u000a\u0009\u0009\u0009</div>\u000a\u0009\u0009</div>\u000a\u0009</div>\u000a</div>\u000a<p>\u000a\u0009&nbsp;</p>\u000a','http://community.jaspersoft.com/project/jasperreports-library',FALSE,FALSE,0.00,NULL)
+DELETE FROM TASKATTACHMENT WHERE ID=14
+INSERT INTO TASKATTACHMENT VALUES(14,414)
+SET SCHEMA SYSTEM_LOBS
+DELETE FROM LOB_IDS WHERE LOB_ID=410
+INSERT INTO LOB_IDS VALUES(410,1463738,0,30)
+DELETE FROM LOB_IDS WHERE LOB_ID=414
+INSERT INTO LOB_IDS VALUES(414,1463738,1,30)
 COMMIT
-/*C7*/DELETE FROM TASK WHERE ID=3
-INSERT INTO TASK VALUES(3,2,'Pitch','orange','orange','2013-04-12 10:00:00.000000','2013-04-12 16:00:00.000000',NULL,0.00,NULL,FALSE,FALSE,0.00,NULL)
+SET SCHEMA MYPM
+DELETE FROM TASK WHERE ID=16
+INSERT INTO TASK VALUES(16,5,'Jasper Plugin','darkcyan','yellowgreen','2013-05-31 08:00:00.000000','2013-05-31 14:00:00.000000',6,25.00,NULL,NULL,FALSE,FALSE,0.00,NULL)
 COMMIT
-DELETE FROM TASK WHERE ID=3
-INSERT INTO TASK VALUES(3,2,'Pitch','orange','orange','2013-04-12 10:00:00.000000','2013-04-12 20:00:00.000000',NULL,0.00,NULL,FALSE,FALSE,0.00,NULL)
+DELETE FROM TASK WHERE ID=22
+INSERT INTO TASK VALUES(22,5,'Jasper Plugin','darkcyan','yellowgreen','2013-05-31 15:00:00.000000','2013-05-31 20:00:00.000000',6,25.00,NULL,NULL,FALSE,FALSE,0.00,NULL)
 COMMIT
-DELETE FROM TASK WHERE ID=3
-INSERT INTO TASK VALUES(3,2,'Pitch','orange','orange','2013-04-11 08:00:00.000000','2013-04-11 18:00:00.000000',NULL,0.00,NULL,FALSE,FALSE,0.00,NULL)
+DELETE FROM TASK WHERE ID=17
+INSERT INTO TASK VALUES(17,7,'Training','blueviolet','blueviolet','2013-06-03 08:00:00.000000','2013-06-05 09:00:00.000000',5,30.00,NULL,NULL,FALSE,FALSE,0.00,NULL)
+COMMIT
+DELETE FROM TASK WHERE ID=18
+INSERT INTO TASK VALUES(18,3,'OSGi','darkturquoise','darkturquoise','2013-06-06 08:00:00.000000','2013-06-06 17:00:00.000000',4,0.00,NULL,NULL,FALSE,FALSE,0.00,NULL)
+COMMIT
+DELETE FROM TASK WHERE ID=19
+INSERT INTO TASK VALUES(19,3,'OSGi','darkturquoise','darkturquoise','2013-06-07 08:00:00.000000','2013-06-07 17:00:00.000000',4,0.00,NULL,NULL,FALSE,FALSE,0.00,NULL)
+COMMIT
+DELETE FROM TASK WHERE ID=20
+INSERT INTO TASK VALUES(20,6,'HSearch','blue','blue','2013-06-10 08:00:00.000000','2013-06-10 17:00:00.000000',4,0.00,NULL,NULL,FALSE,FALSE,0.00,NULL)
+COMMIT
+DELETE FROM TASK WHERE ID=21
+INSERT INTO TASK VALUES(21,6,'HSearch','blue','blue','2013-06-11 08:00:00.000000','2013-06-11 17:00:00.000000',4,0.00,NULL,NULL,FALSE,FALSE,0.00,NULL)
 COMMIT
