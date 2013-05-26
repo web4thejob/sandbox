@@ -60,12 +60,12 @@
     <modules>
         <module>myprojects</module>
         <module>mycalendar</module>
-        <module>mywebapp</module>
+        <!--<module>mywebapp</module>-->
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <org.web4thejob.version>3.4.2</org.web4thejob.version>
+        <org.web4thejob.version>3.4.3-SNAPSHOT</org.web4thejob.version>
         <org.junit.version>4.10</org.junit.version>
     </properties>
 
