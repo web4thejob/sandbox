@@ -49,7 +49,8 @@ public class DefaultHelpPanel extends DefaultHtmlViewPanel implements HelpPanel 
     @Override
     public void processMessage(Message message) {
         if (message.getId() == MessageEnum.ACTIVATED && message.getArg(MessageArgEnum.ARG_ITEM,
-                Object.class) instanceof Panel) {
+                Object.class) instanceof Panel && message.getArg(MessageArgEnum.ARG_ITEM,
+                Panel.class).isPersisted()) {
 
             Panel panel = message.getArg(MessageArgEnum.ARG_ITEM, Panel.class);
 
