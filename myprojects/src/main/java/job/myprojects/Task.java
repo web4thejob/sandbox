@@ -27,6 +27,7 @@ import org.web4thejob.orm.AbstractHibernateEntity;
 import org.web4thejob.orm.Entity;
 import org.web4thejob.orm.annotation.ColorHolder;
 import org.web4thejob.orm.annotation.HtmlHolder;
+import org.web4thejob.orm.annotation.StatusHolder;
 import org.web4thejob.orm.annotation.UrlHolder;
 import org.web4thejob.orm.validation.AdhocConstraintViolation;
 
@@ -68,6 +69,7 @@ public class Task extends AbstractHibernateEntity {
     @UrlHolder
     private String link;
     private boolean locked;
+    @StatusHolder(InactiveWhen = true)
     private boolean cancelled;
     @DecimalMin("0.00")
     @NotNull
