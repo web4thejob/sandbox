@@ -69,10 +69,19 @@ public class SandboxAboutDialog extends DefaultAboutDialog {
         html.setContent("Copyright &copy; " + java.util.Calendar.getInstance().get(java.util.Calendar.YEAR) + " " +
                 L10nMessages.L10N_DEVELOPER_SIGNATURE.toString());
 
-        label = new Label();
-        label.setParent(vbox);
-        label.setStyle("font-size:12pt;color:rgb(85,85,85);");
-        label.setValue("Powered by web4thejob v" + ContextUtil.getModules().get(0).getVersion());
+        html = new Html();
+        html.setParent(vbox);
+        html.setZclass("z-label");
+        html.setStyle("font-size:12pt;color:rgb(85,85,85);");
+        html.setContent("Licensed under <a target=\"_blank\" href=\"http://www.gnu.org/licenses/gpl.html\">GPL v3</a>");
+
+        html = new Html();
+        html.setParent(vbox);
+        html.setZclass("z-label");
+        html.setStyle("font-size:12pt;color:rgb(85,85,85);");
+        html.setContent("Powered by <a target=\"_blank\" href=\"http://sourceforge" +
+                ".net/projects/web4thejob/files/webapp/" + ContextUtil.getModules().get(0).getVersion() + "\">" +
+                "web4thejob v" + ContextUtil.getModules().get(0).getVersion() + "</a>");
 
         html = new Html();
         html.setParent(vbox);
