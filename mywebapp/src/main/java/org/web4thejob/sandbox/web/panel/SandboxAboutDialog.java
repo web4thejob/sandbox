@@ -73,7 +73,7 @@ public class SandboxAboutDialog extends DefaultAboutDialog {
         html.setParent(vbox);
         html.setZclass("z-label");
         html.setStyle("font-size:12pt;color:rgb(85,85,85);");
-        html.setContent("Licensed under <a target=\"_blank\" href=\"http://www.gnu.org/licenses/gpl.html\">GPL v3</a>");
+        html.setContent("Licensed under <a target=\"_blank\" href=\"http://www.gnu.org/licenses/gpl.html\">GNU GPL v3</a>");
 
         html = new Html();
         html.setParent(vbox);
