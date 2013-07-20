@@ -29,10 +29,14 @@
     <title>web4thejob sandbox >> Login Page</title>
     <script type="text/javascript" src="./js/loginSupport.js"></script>
     <style type="text/css">
-        body {
+        * {
+        margin: 0;
+        }
+        html, body {
         font-family:arial, sans-serif;
         background-color: #FFFFFF;
-        height: 100%;margin: 0px;
+        height: 100%;
+        margin: 0px;
         background-image:url('img/watermark.png');
         }
         .link {
@@ -41,6 +45,13 @@
         .link:hover {
         color:#b13dcc;
         }
+        .footer-link {
+        color:white;
+        }
+        .footer-link:hover {
+        color:#b13dcc;
+        }
+
         .quote {
         font: normal 160%/1.4 Times,sans-serif;
         font-style: italic;
@@ -57,11 +68,30 @@
         margin-top: 20px;
         margin-bottom: 20px;
         }
-
+        .wrapper {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        margin: 0 auto -80px; /* the bottom margin is the negative value of the footer's height */
+        }
+        .push {
+        height: 80px; /* .push must be the same height as .footer */
+        }
+        .footer {
+        height: 80px; /* .push must be the same height as .footer */
+        max-width: 800px;
+        margin: 0 auto;
+        background-color:#78b428;
+        text-align: center;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color:white;
+        }
     </style>
 </head>
 <body onload="handleLogin();">
-<table style="height: 100%; width: 100%">
+<div class="wrapper">
+<table style="width: 100%">
     <tbody>
     <tr valign="middle" style="height: 300px">
         <td align="center">
@@ -134,12 +164,29 @@
 
     <tr valign="top">
         <td align="center">
-            <iframe src="pub/userslist.zul" frameborder="0" align="middle" width="550px" height="200px"
+            <iframe src="pub/userslist.zul" frameborder="0" align="middle" width="800px" height="200px"
                     scrolling="auto"></iframe>
         </td>
     </tr>
 
     </tbody>
-</table>
+    </table>
+    <div class="push"></div>
+</div>
+
+        <div class="footer">
+            <div style="padding-top:5px">
+                <span>Last cleaned on</span>
+            </div>
+
+            <div style="padding-top: 5px;">
+                <span>Licensed under <a class="footer-link" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License v3</a></span>
+            </div>
+
+            <div style="padding-top: 5px;">
+                <span>Copyright &copy 2013 <a class="footer-link" href="http://gr.linkedin.com/in/veniaminisaias/">Veniamin Isaias</a></span>
+            </div>
+        </div>
+
 </body>
 </html>
