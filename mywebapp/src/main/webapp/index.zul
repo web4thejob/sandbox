@@ -47,10 +47,12 @@
                         border-bottom-width: 4px; border-color: rgb(245,245,245); background-image:url('img/sandbox_header.png');">
                         <hlayout hflex="true" vflex="true">
                             <hbox hflex="true" vflex="true" pack="start" align="center">
-                                <a style="padding-left: 15px;" href="http://web4thejob.org" image="img/w4tj_logo_35.png"/>
+                                <a style="padding-left: 15px;" href="http://web4thejob.org" image="img/w4tj_logo_35.png" tooltiptext="@home"/>
                             </hbox>
                             <hbox hflex="true" vflex="true" pack="end" align="center">
-                                <html><a style="font-family:Arial;font-weight:bold;color:#91DA30;margin-right:10px;" target="_blank" href="https://sourceforge.net/web4thejob-sandbox">Download this sandbox</a></html>
+                                    <a style="margin-right:5px;" target="_blank" href="https://sourceforge.net/web4thejob-sandbox" image="img/sf.png" tooltiptext="Download private copy"/>
+                                    <a style="margin-right:5px;" target="_blank" href="https://github.com/web4thejob/sandbox" image="img/github.png" tooltiptext="Browse sources"/>
+                                    <a style="margin-right:5px;" target="_blank" href="http://eepurl.com/CBqaH" image="img/mail.png" tooltiptext="Subscribe to mailing list"/>
                             </hbox>
                         </hlayout>
                 </north>
