@@ -60,7 +60,7 @@
     <modules>
         <module>myprojects</module>
         <module>mycalendar</module>
-        <!--<module>mywebapp</module>-->
+        <module>mywebapp</module>
     </modules>
 
     <properties>

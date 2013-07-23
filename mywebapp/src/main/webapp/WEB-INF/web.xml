@@ -119,4 +119,34 @@
         <welcome-file>index.zul</welcome-file>
     </welcome-file-list>
 
+    <!-- SSI servlet -->
+    <servlet>
+        <servlet-name>ssi</servlet-name>
+        <servlet-class>
+            org.apache.catalina.ssi.SSIServlet
+        </servlet-class>
+        <init-param>
+            <param-name>buffered</param-name>
+            <param-value>1</param-value>
+        </init-param>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>expires</param-name>
+            <param-value>666</param-value>
+        </init-param>
+        <init-param>
+            <param-name>isVirtualWebappRelative</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ssi</servlet-name>
+        <url-pattern>*.html</url-pattern>
+    </servlet-mapping>
+
 </web-app>
