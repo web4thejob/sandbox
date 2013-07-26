@@ -50,7 +50,7 @@
                                 <a style="padding-left: 15px;" href="http://web4thejob.org" image="img/w4tj_logo_35.png" tooltiptext="@home"/>
                             </hbox>
                             <hbox hflex="true" vflex="true" pack="end" align="center">
-                                    <a style="margin-right:5px;" target="_blank" href="https://sourceforge.net/web4thejob-sandbox" image="img/sf.png" tooltiptext="Download private copy"/>
+                                    <a style="margin-right:5px;" target="_blank" href="https://sourceforge.net/projects/web4thejob/files/sandbox/" image="img/sf.png" tooltiptext="Download private copy"/>
                                     <a style="margin-right:5px;" target="_blank" href="https://github.com/web4thejob/sandbox" image="img/github.png" tooltiptext="Browse sources"/>
                                     <a style="margin-right:5px;" target="_blank" href="http://eepurl.com/CBqaH" image="img/mail.png" tooltiptext="Subscribe to mailing list"/>
                             </hbox>
