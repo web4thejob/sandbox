@@ -87,7 +87,7 @@
         <set name="tasks" table="Task" inverse="true" lazy="true" fetch="select">
             <meta attribute="friendlyName">Tasks</meta>
             <key>
-                <column name="Venue" not-null="false"/>
+                <column name="Location" not-null="false"/>
             </key>
             <one-to-many class="job.myprojects.Task"/>
         </set>
