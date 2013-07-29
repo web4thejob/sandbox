@@ -36,27 +36,27 @@
             <meta attribute="orderno">2</meta>
             <column name="Project" not-null="true"/>
         </many-to-one>
-        <property name="title" type="string" index="true">
+        <property name="title" type="string" index="ix_title">
             <meta attribute="friendlyName">Title</meta>
             <meta attribute="orderno">3</meta>
             <column name="Title" not-null="true"/>
         </property>
-        <property name="borderColor" type="string" index="true">
+        <property name="borderColor" type="string">
             <meta attribute="friendlyName">Border Color</meta>
             <meta attribute="orderno">4</meta>
             <column name="BorderColor" length="20" not-null="true"/>
         </property>
-        <property name="color" type="string" index="true">
+        <property name="color" type="string">
             <meta attribute="friendlyName">Content Color</meta>
             <meta attribute="orderno">5</meta>
             <column name="Color" length="20" not-null="true"/>
         </property>
-        <property name="startTime" type="timestamp" index="true">
+        <property name="startTime" type="timestamp" index="ix_start">
             <meta attribute="friendlyName">Start Time</meta>
             <meta attribute="orderno">6</meta>
             <column name="StartTime" length="23" not-null="true"/>
         </property>
-        <property name="endTime" type="timestamp" index="true">
+        <property name="endTime" type="timestamp" index="ix_end">
             <meta attribute="friendlyName">End Time</meta>
             <meta attribute="orderno">7</meta>
             <column name="EndTime" length="23" not-null="true"/>
@@ -66,7 +66,7 @@
             <meta attribute="orderno">8</meta>
             <column name="Location"/>
         </many-to-one>
-        <property name="rate" type="big_decimal" index="true">
+        <property name="rate" type="big_decimal">
             <meta attribute="friendlyName">Rate</meta>
             <meta attribute="orderno">9</meta>
             <column name="Rate" not-null="true"/>
@@ -91,7 +91,7 @@
             <meta attribute="orderno">13</meta>
             <column name="Cancelled" not-null="true"/>
         </property>
-        <property name="notBillable" type="big_decimal" index="true">
+        <property name="notBillable" type="big_decimal">
             <meta attribute="friendlyName">Not Billable hours</meta>
             <meta attribute="orderno">14</meta>
             <column name="NotBillable" not-null="true" default="0"/>
