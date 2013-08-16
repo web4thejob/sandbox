@@ -19,30 +19,30 @@
 
 package job.myprojects;
 
+import job.myprojects.validator.NotBillable;
+import job.myprojects.validator.ReasonableTime;
 import org.hibernate.validator.constraints.NotBlank;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.Duration;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.AbstractHibernateEntity;
-import org.web4thejob.orm.Entity;
 import org.web4thejob.orm.annotation.ColorHolder;
 import org.web4thejob.orm.annotation.HtmlHolder;
 import org.web4thejob.orm.annotation.StatusHolder;
 import org.web4thejob.orm.annotation.UrlHolder;
-import org.web4thejob.orm.validation.AdhocConstraintViolation;
 
-import javax.validation.ConstraintViolation;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Set;
 
 /**
  * @author Veniamin Isaias
  * @since 1.0.0
  */
+@ReasonableTime
+@NotBillable
 public class Task extends AbstractHibernateEntity {
 
     private long id;
@@ -231,52 +231,6 @@ public class Task extends AbstractHibernateEntity {
 
     public void setDuration(BigDecimal duration) {
         this.duration = duration;
-    }
-
-    @Override
-    public Set<ConstraintViolation<Entity>> validate() {
-        final Set<ConstraintViolation<Entity>> violations = super.validate();
-
-        if (!isStartTimeValid()) {
-            violations.add(new AdhocConstraintViolation(
-                    "org.web4thejob.model.constraint.NotBefore.message", "startTime",
-                    this, startTime));
-        }
-
-        if (!isEndTimeValid()) {
-            violations.add(new AdhocConstraintViolation(
-                    "org.web4thejob.model.constraint.NotAfter.message", "endTime",
-                    this, endTime));
-        }
-
-        if (!isNotBillableValid()) {
-            violations.add(new AdhocConstraintViolation(
-                    "org.web4thejob.model.constraint.LimitExcess.message", "notBillable",
-                    this, notBillable));
-        }
-
-        return violations;
-    }
-
-    private boolean isStartTimeValid() {
-        if (startTime != null && endTime != null) {
-            return startTime.before(endTime);
-        }
-        return true;
-    }
-
-    private boolean isEndTimeValid() {
-        if (startTime != null && endTime != null) {
-            return endTime.after(startTime);
-        }
-        return true;
-    }
-
-    public boolean isNotBillableValid() {
-        if (notBillable != null) {
-            return calcDuration().compareTo(notBillable) >= 0;
-        }
-        return true;
     }
 
     public TaskAttachment getAttachment() {
