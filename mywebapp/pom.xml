@@ -70,7 +70,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.web4thejob</groupId>
             <artifactId>myprojects</artifactId>

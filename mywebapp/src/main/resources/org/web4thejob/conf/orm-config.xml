@@ -41,7 +41,7 @@
     </bean>
 
     <bean id="validator"
-          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+          class="org.web4thejob.orm.validation.CustomLocalValidatorFactoryBean">
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
 
@@ -69,13 +69,6 @@
                 <prop key="hibernate.cache.">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
                 <prop key="net.sf.ehcache.configurationResourceName">/org/web4thejob/conf/orm-ehcache.xml</prop>
             </props>
-        </property>
-
-        <property name="classpathMappingResources">
-            <array>
-                <value>classpath*:org/web4thejob/orm/**/*.hbm.xml</value>
-                <value>${joblet.resources}</value>
-            </array>
         </property>
     </bean>
 
