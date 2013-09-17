@@ -20,6 +20,7 @@
 package org.web4thejob.sandbox;
 
 import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.web4thejob.context.ContextUtil;
 import org.web4thejob.orm.Entity;
 import org.web4thejob.orm.Path;
@@ -84,10 +85,7 @@ public class UserNamesAndPasswords implements Composer<Window>, RowRenderer<User
     public void render(Row row, UserIdentity data, int index) throws Exception {
 
         new Label(data.getCode()).setParent(row);
-
-        PlaintextPasswordEncoder encoder = ContextUtil.getBean(PlaintextPasswordEncoder.class);
-        new Label(encoder.obtainPasswordAndSalt(data.getPassword())[0]).setParent(row);
-
+        new Label(data.getPassword()).setParent(row);
         new Label(data.getLastName()).setParent(row);
 
         Html html = new Html();

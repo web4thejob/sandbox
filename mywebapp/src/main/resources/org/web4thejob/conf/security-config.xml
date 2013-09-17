@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="ISO-8859-7"?>
 <!--
-  ~ Copyright (c) 2013 Veniamin Isaias
+  ~ Copyright (c) 2012-2013 Veniamin Isaias.
   ~
-  ~ This file is part of web4thejob-sandbox.
+  ~ This file is part of web4thejob.
   ~
-  ~ Web4thejob-sandbox is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
+  ~ Web4thejob is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU Lesser General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or any later version.
   ~
-  ~ Web4thejob-sandbox is distributed in the hope that it will be useful,
+  ~ Web4thejob is distributed in the hope that it will be useful,
   ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
   ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
+  ~ GNU Lesser General Public License for more details.
   ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with web4thejob-sandbox.  If not, see <http://www.gnu.org/licenses/>.
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with web4thejob.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
 <beans:beans xmlns="http://www.springframework.org/schema/security"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns:aop="http://www.springframework.org/schema/aop"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
                         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <beans:bean id="userDetailsService"
@@ -44,19 +43,13 @@
     </beans:bean>
 
     <beans:bean id="passwordEncoder"
-                class="org.springframework.security.authentication.encoding.PlaintextPasswordEncoder">
-    </beans:bean>
-
-    <beans:bean id="userSaltSource"
-                class="org.springframework.security.authentication.dao.ReflectionSaltSource">
-        <beans:property name="userPropertyToUse" value="username"/>
+                class="org.springframework.security.crypto.password.NoOpPasswordEncoder">
     </beans:bean>
 
     <beans:bean id="credentialsExpiredErrorHandler"
-                class="org.web4thejob.security.CredentialsExpiredErrorHandler" scope="request">
+                class="org.web4thejob.security.CredentialsExpiredErrorHandler" scope="session">
         <aop:scoped-proxy/>
         <beans:property name="defaultFailureUrl" value="/login.html?failed=1"/>
-        <beans:property name="passwordChangeUrl" value="/sec/pchange.zul"/>
     </beans:bean>
 
     <beans:bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
@@ -75,12 +68,15 @@
                 <beans:entry
                         key="firstUse"
                         value-ref="firstUseEP"/>
+                <beans:entry
+                        key="credentialsExpired"
+                        value-ref="pchangeEP"/>
             </beans:map>
         </beans:constructor-arg>
-        <beans:property name="defaultEntryPoint" ref="defaultEP"/>
+        <beans:property name="defaultEntryPoint" ref="unsecuredEP"/>
     </beans:bean>
 
-    <beans:bean id="defaultEP"
+    <beans:bean id="unsecuredEP"
                 class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
         <beans:constructor-arg>
             <beans:value>/login.html</beans:value>
@@ -93,15 +89,20 @@
             <beans:value>/sec/fuwizard.zul</beans:value>
         </beans:constructor-arg>
     </beans:bean>
-
     <!--Delegating authentication point for providing secured/unsecured connections depending on request ip -->
+
+    <beans:bean id="pchangeEP"
+                class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+        <beans:constructor-arg>
+            <beans:value>/sec/pchange.zul</beans:value>
+        </beans:constructor-arg>
+    </beans:bean>
 
 
     <authentication-manager alias="authenticationManager">
         <!--<authentication-provider ref="adAuthenticationProvider"/>-->
         <authentication-provider user-service-ref="userDetailsService">
             <password-encoder ref="passwordEncoder">
-                <salt-source ref="userSaltSource"/>
             </password-encoder>
         </authentication-provider>
     </authentication-manager>
@@ -110,13 +111,14 @@
     <http auto-config="true" use-expressions="true" entry-point-ref="authenticationEntryPoint"
           access-decision-manager-ref="webAccessDecisionManager">
         <intercept-url pattern="/sec/fuwizard.zul" access="permitAll and firstUse" requires-channel="http"/>
-        <intercept-url pattern="/login.html" access="permitAll and !firstUse" requires-channel="http"/>
+        <intercept-url pattern="/sec/pchange.zul" access="permitAll and !firstUse" requires-channel="http"/>
+        <intercept-url pattern="/login.html" access="fromIntranet and !firstUse" requires-channel="http"/>
 
-        <intercept-url pattern="/pub/**" access="permitAll"/>
         <intercept-url pattern="/zkau/**" access="permitAll"/>
         <intercept-url pattern="/js/**" access="permitAll"/>
         <intercept-url pattern="/img/**" access="permitAll"/>
         <intercept-url pattern="/license/**" access="permitAll"/>
+        <intercept-url pattern="/pub/**" access="permitAll"/>
         <intercept-url pattern="/favicon.ico" access="permitAll"/>
 
         <intercept-url pattern="/**" access="authenticated and !firstUse"/>
