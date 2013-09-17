@@ -109,8 +109,7 @@ public class SandboxAboutDialog extends DefaultAboutDialog {
         html.setParent(vbox);
         html.setZclass("z-label");
         html.setStyle("font-size:12pt;color:rgb(85,85,85);");
-        String passwd = ContextUtil.getBean(PlaintextPasswordEncoder.class).obtainPasswordAndSalt(ContextUtil
-                .getSecurityService().getAdministratorIdentity().getPassword())[0];
+        String passwd = ContextUtil.getSecurityService().getAdministratorIdentity().getPassword();
         html.setContent("Password: <span style=\"color:rgb(75,75,75)\"><strong>" + passwd + "</strong></span>");
 
 
