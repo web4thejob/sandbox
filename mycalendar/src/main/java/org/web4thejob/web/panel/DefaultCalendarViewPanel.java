@@ -33,6 +33,7 @@ import org.web4thejob.model.CalendarEventEntity;
 import org.web4thejob.model.CalendarEventWrapper;
 import org.web4thejob.orm.Entity;
 import org.web4thejob.orm.Path;
+import org.web4thejob.orm.PropertyMetadata;
 import org.web4thejob.orm.query.Condition;
 import org.web4thejob.orm.query.Criterion;
 import org.web4thejob.orm.query.OrderBy;
@@ -50,6 +51,7 @@ import org.web4thejob.web.util.ZkUtil;
 import org.zkoss.calendar.Calendars;
 import org.zkoss.calendar.api.CalendarEvent;
 import org.zkoss.calendar.api.CalendarModel;
+import org.zkoss.calendar.event.CalendarDropEvent;
 import org.zkoss.calendar.event.CalendarsEvent;
 import org.zkoss.calendar.impl.SimpleCalendarModel;
 import org.zkoss.calendar.impl.SimpleDateFormatter;
@@ -58,6 +60,8 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
+import org.zkoss.zul.ListModelList;
+import org.zkoss.zul.Listitem;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -82,6 +86,7 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
     private static final String ATTRIB_BEGIN_DATE = "beginDate";
     private static final String ATTRIB_END_DATE = "endDate";
     private final Calendars calendar = new Calendars();
+    private final CalendarsEventHandler calendarsEventHandler = new CalendarsEventHandler();
     private DialogListener dialogListener = new DialogListener();
     private Query activeQuery;
     private Entity targetEntity;
@@ -96,7 +101,6 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         calendar.setDateFormatter(new MyDateFormatter());
         calendar.setWeekOfYear(true);
 
-        final CalendarsEventHandler calendarsEventHandler = new CalendarsEventHandler();
         calendar.addEventListener(CalendarsEvent.ON_DAY_CLICK, calendarsEventHandler);
         calendar.addEventListener(CalendarsEvent.ON_WEEK_CLICK, calendarsEventHandler);
         calendar.addEventListener(CalendarsEvent.ON_EVENT_CREATE, calendarsEventHandler);
@@ -239,6 +243,7 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         super.arrangeForNullTargetType();
         activeQuery = null;
         setTargetEntity(null);
+        calendar.setDroppable("false");
         unregisterCommand(CommandEnum.QUERY);
         unregisterCommand(CommandEnum.REFRESH);
         unregisterCommand(CommandEnum.ADDNEW);
@@ -289,6 +294,9 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
         registerCommand(ContextUtil.getDefaultCommand(CalendarCommandEnum.CALENDAR_VIEW, this));
         arrangeForState(PanelState.READY);
         arrangeForMold();
+        calendar.setDroppable("true");
+        calendar.removeEventListener(Events.ON_DROP, calendarsEventHandler); //its called many times
+        calendar.addEventListener(Events.ON_DROP, calendarsEventHandler);
     }
 
     @Override
@@ -479,6 +487,7 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
                 EntityPersisterDialog dialog = ContextUtil.getDefaultDialog(EntityPersisterDialog.class,
                         templEntity, getSettings(), MutableMode.INSERT);
                 dialog.setL10nMode(getL10nMode());
+                dialog.setDirty(true);
                 dialog.show(dialogListener);
             }
 
@@ -634,8 +643,8 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
                 if (hasCommand(CommandEnum.ADDNEW)) {
                     CalendarsEvent cevt = (CalendarsEvent) event;
                     Command addnew = getCommand(CommandEnum.ADDNEW);
-                    addnew.setArg(ATTRIB_BEGIN_DATE, cevt.getBeginDate());
-                    addnew.setArg(ATTRIB_END_DATE, cevt.getEndDate());
+                    addnew.setArg(ATTRIB_BEGIN_DATE, adjustStartTime(cevt.getBeginDate()));
+                    addnew.setArg(ATTRIB_END_DATE, adjustEndTime(cevt.getEndDate()));
                     processValidCommand(addnew);
                     addnew.removeArgs();
                 }
@@ -692,9 +701,98 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
                 focus(((Date) event.getData()), 1);
             } else if (ON_WEEK_CLICK_ECHO.equals(event.getName())) {
                 focus(((Date) event.getData()), 7);
+            } else if (Events.ON_DROP.equals(event.getName())) {
+                handleEntityDrop((CalendarDropEvent) event);
+            }
+        }
+
+        private void handleEntityDrop(CalendarDropEvent event) {
+            if (event.getDragged() instanceof Listitem && hasCommand(CommandEnum.ADDNEW)) {
+
+                final Listitem draggedItem = (Listitem) event.getDragged();
+                final ListModelList model = (ListModelList) draggedItem.getListbox().getModel();
+                final Entity draggedEntity = (Entity) model.getElementAt(draggedItem.getIndex());
+                Entity selectedEntity = null;
+                if (!model.getSelection().isEmpty()) {
+                    selectedEntity = (Entity) model.getSelection().iterator().next();
+                }
+
+                if (selectedEntity == null) {
+                    draggedItem.setSelected(true);
+                } else if (draggedEntity.equals(getTargetEntity())) {
+                    return;
+                } else if (draggedEntity.getEntityType().equals(getMasterType())) {
+                    return;
+                }
+
+                Entity trgentity = prepareMutableInstance(MutableMode.INSERT);
+                if (trgentity == null) {
+                    return;
+                }
+                if (getTargetType().equals(draggedEntity.getEntityType())) {
+                    trgentity = draggedEntity.clone();
+                } else {
+                    applyCurrentCritriaValues(getFinalQuery(calendar.getBeginDate(), calendar.getEndDate()), trgentity);
+                    for (final PropertyMetadata propertyMetadata : ContextUtil.getMRS().getEntityMetadata
+                            (getTargetType()
+                            ).getPropertiesMetadata()) {
+                        if (propertyMetadata.isInsertable() && !propertyMetadata.getName().equals(getBindProperty()) &&
+                                propertyMetadata.isAssociationType() && propertyMetadata.getAssociatedEntityMetadata()
+                                .getEntityType().equals(draggedEntity.getEntityType())) {
+
+                            propertyMetadata.setValue(trgentity, draggedEntity);
+                            // break;
+                        }
+                    }
+                }
+
+                Date start = adjustStartTime(event.getDate());
+                Date end = adjustEndTime(event.getDate());
+
+                //Set start time
+                ContextUtil.getMRS().getPropertyMetadata(trgentity.getEntityType(),
+                        getMappings().get(CalendarSettingEnum.CALENDAR_EVENT_START).getValue().toString()).setValue
+                        (trgentity, start);
+
+                //Set end time (start time + 1h)
+                ContextUtil.getMRS().getPropertyMetadata(trgentity.getEntityType(),
+                        getMappings().get(CalendarSettingEnum.CALENDAR_EVENT_END).getValue().toString()).setValue
+                        (trgentity, end);
+
+
+                trgentity.setAsNew();
+                EntityPersisterDialog dialog = ContextUtil.getDefaultDialog(EntityPersisterDialog.class, trgentity,
+                        getSettings(), MutableMode.INSERT, false);
+                dialog.setL10nMode(getL10nMode());
+                dialog.setDirty(true);
+                dialog.show(dialogListener);
+            }
+        }
+
+        private Date adjustStartTime(Date start) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(start);
+
+            if (c.get(Calendar.HOUR_OF_DAY) < getSettingValue(CalendarSettingEnum.CALENDAR_START_TIME, 0)) {
+                c.set(Calendar.HOUR_OF_DAY, getSettingValue(CalendarSettingEnum.CALENDAR_START_TIME, 0));
             }
 
+            return c.getTime();
+
         }
+
+        private Date adjustEndTime(Date end) {
+            Calendar c = Calendar.getInstance();
+            c.setTime(end);
+
+            if (c.get(Calendar.HOUR_OF_DAY) < getSettingValue(CalendarSettingEnum.CALENDAR_START_TIME, 0)) {
+                c.set(Calendar.HOUR_OF_DAY, getSettingValue(CalendarSettingEnum.CALENDAR_START_TIME, 0) + 1);
+            }
+
+            return c.getTime();
+
+        }
+
     }
 
     private void focus(Date date, int span) {
