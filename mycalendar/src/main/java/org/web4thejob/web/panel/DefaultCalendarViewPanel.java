@@ -749,12 +749,19 @@ public class DefaultCalendarViewPanel extends AbstractZkBindablePanel implements
                 Date start = adjustStartTime(event.getDate());
                 Date end = adjustEndTime(event.getDate());
 
+                if (!end.after(start)) {
+                    Calendar c = Calendar.getInstance();
+                    c.setTime(end);
+                    c.set(Calendar.HOUR_OF_DAY, c.get(Calendar.HOUR_OF_DAY) + 1);
+                    end = c.getTime();
+                }
+
                 //Set start time
                 ContextUtil.getMRS().getPropertyMetadata(trgentity.getEntityType(),
                         getMappings().get(CalendarSettingEnum.CALENDAR_EVENT_START).getValue().toString()).setValue
                         (trgentity, start);
 
-                //Set end time (start time + 1h)
+                //Set end time
                 ContextUtil.getMRS().getPropertyMetadata(trgentity.getEntityType(),
                         getMappings().get(CalendarSettingEnum.CALENDAR_EVENT_END).getValue().toString()).setValue
                         (trgentity, end);
