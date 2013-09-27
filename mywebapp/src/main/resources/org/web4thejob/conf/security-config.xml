@@ -112,7 +112,7 @@
           access-decision-manager-ref="webAccessDecisionManager">
         <intercept-url pattern="/sec/fuwizard.zul" access="permitAll and firstUse" requires-channel="http"/>
         <intercept-url pattern="/sec/pchange.zul" access="permitAll and !firstUse" requires-channel="http"/>
-        <intercept-url pattern="/login.html" access="fromIntranet and !firstUse" requires-channel="http"/>
+        <intercept-url pattern="/login.html" access="permitAll and !firstUse" requires-channel="http"/>
 
         <intercept-url pattern="/zkau/**" access="permitAll"/>
         <intercept-url pattern="/js/**" access="permitAll"/>
