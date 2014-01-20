@@ -26,7 +26,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <link rel="shortcut icon" href="favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="pub/switchboard.css" title="Switchboard"/>
+    <link rel="stylesheet" type="text/css" href="pub/switchboard.css" title="Switchboard"/>
     <title>web4thejob sandbox >> Login Page</title>
     <script type="text/javascript" src="./js/loginSupport.js"></script>
     <style type="text/css">
@@ -92,104 +92,104 @@
 </head>
 <body onload="handleLogin();">
 <div class="wrapper">
-<table style="width: 100%">
-    <tbody>
-    <tr valign="middle" style="height: 300px">
-        <td align="center">
-            <a href="http://web4thejob.org"><img style="border-style: none;margin-top:50px;"
-                                                 src="img/w4tj_logo_vertical_full.png"
-                                                 title="Put your logo here" alt="logo"/></a>
-        </td>
-    </tr>
-    <tr valign="middle">
-        <td align="center">
-            <div class="sandbox-tag">@sandbox<sup style="color:red;font-style:italic;font-size:10pt;">beta</sup></div>
-        </td>
-    </tr>
+    <table style="width: 100%">
+        <tbody>
+        <tr valign="middle" style="height: 300px">
+            <td align="center">
+                <a href="http://web4thejob.org"><img style="border-style: none;margin-top:50px;"
+                                                     src="img/w4tj_logo_vertical_full.png"
+                                                     title="Put your logo here" alt="logo"/></a>
+            </td>
+        </tr>
+        <tr valign="middle">
+            <td align="center">
+                <div class="sandbox-tag">@sandbox<sup style="color:red;font-style:italic;font-size:10pt;">beta</sup></div>
+            </td>
+        </tr>
 
-    <tr valign="middle">
-        <td align="center">
-            <div class="quote">&#171;A sandbox is good not only for cats&#187;</div>
-        </td>
-    </tr>
+        <tr valign="middle">
+            <td align="center">
+                <div class="quote">&#171;A sandbox is good not only for cats&#187;</div>
+            </td>
+        </tr>
 
-    <tr valign="top">
-        <td align="center">
-            <form name="f" action="j_spring_security_check" method="POST">
-                <table style="height: 70px">
-                    <tbody>
-                    <tr>
-                        <td align="right">
-                            <span>User Name:</span>
-                        </td>
-                        <td align="left">
-                            <input type="text" name="j_username" style="width:150px"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">
-                            <span>Password:</span>
-                        </td>
-                        <td align="left">
-                            <input type="password" name="j_password" style="width:150px"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">
+        <tr valign="top">
+            <td align="center">
+                <form name="f" action="j_spring_security_check" method="post">
+                    <table style="height: 70px">
+                        <tbody>
+                        <tr>
+                            <td align="right">
+                                <span>User Name:</span>
+                            </td>
+                            <td align="left">
+                                <input type="text" name="j_username" style="width:150px"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                <span>Password:</span>
+                            </td>
+                            <td align="left">
+                                <input type="password" name="j_password" style="width:150px"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
 
-                        </td>
-                        <td align="left">
-                            <input type="checkbox" name='_spring_security_remember_me'/>
-                            <span style="font-size: 80%;">Remember me on this computer</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td align="left">
-                            <input name="submit" type="submit" value="Sign in"/>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </form>
-        </td>
-    </tr>
+                            </td>
+                            <td align="left">
+                                <input type="checkbox" name='_spring_security_remember_me'/>
+                                <span style="font-size: 80%;">Remember me on this computer</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td align="left">
+                                <input name="submit" type="submit" value="Sign in"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </td>
+        </tr>
 
-    <tr>
-        <td align="center">
-            <div class="about">
-                <strong><a class="link" href="pub/about.html">What is this all about?</a></strong>
-            </div>
-        </td>
-    </tr>
+        <tr>
+            <td align="center">
+                <div class="about">
+                    <strong><a class="link" href="pub/about.html">What is this all about?</a></strong>
+                </div>
+            </td>
+        </tr>
 
-    <tr valign="top">
-        <td align="center">
-            <iframe src="pub/userslist.zul" frameborder="0" align="middle" width="600px" height="200px"
-                    scrolling="auto"></iframe>
-        </td>
-    </tr>
+        <tr valign="top">
+            <td align="center">
+                <iframe src="pub/userslist.zul" frameborder="0" align="middle" width="600px" height="200px"
+                        scrolling="auto"></iframe>
+            </td>
+        </tr>
 
-    </tbody>
+        </tbody>
     </table>
     <div class="push"></div>
 </div>
 
-        <div class="footer">
-            <div style="padding-top:5px">
-                <span>Last cleaned on <!--#include virtual="cleaned.log" --></span> 
-            </div>
+<div class="footer">
+    <div style="padding-top:5px">
+        <span>Last cleaned on <!--#include virtual="cleaned.log" --></span>
+    </div>
 
-            <div style="padding-top: 5px;">
-                <span>Licensed under <a class="footer-link" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License v3</a></span>
-            </div>
+    <div style="padding-top: 5px;">
+        <span>Licensed under <a class="footer-link" href="http://www.gnu.org/licenses/gpl.html">GNU General Public License v3</a></span>
+    </div>
 
-            <div style="padding-top: 5px;">
-                <span>Copyright &copy; 2013 <a class="footer-link" href="http://gr.linkedin.com/in/veniaminisaias/">Veniamin Isaias</a></span>
-            </div>
-        </div>
+    <div style="padding-top: 5px;">
+        <span>Copyright &copy; 2013 <a class="footer-link" href="http://gr.linkedin.com/in/veniaminisaias/">Veniamin Isaias</a></span>
+    </div>
+</div>
 
-		<!--#include virtual="pub/theme.html" -->
+<!--#include virtual="pub/theme.html" -->
 
 </body>
 </html>
